@@ -1,0 +1,33 @@
+name: Daily Panchang Update
+
+on:
+  schedule:
+    - cron: '30 18 * * *'  # Roz 12:00 AM IST (18:30 UTC)
+  workflow_dispatch:        # Manual trigger bhi kar sakte ho
+
+jobs:
+  update-panchang:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install pyswisseph astral
+
+      - name: Generate today's panchang
+        run: python -X utf8 panchang_engine.py > today_panchang.json
+
+      - name: Commit and push
+        run: |
+          git config user.name "Adhyatmik Bharat Bot"
+          git config user.email "bot@adhyatmikbharat.com"
+          git add today_panchang.json
+          git diff --staged --quiet || git commit -m "Auto update: $(date '+%d %b %Y') panchang"
+          git push
