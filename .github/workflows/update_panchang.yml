@@ -3,9 +3,11 @@ name: Daily Panchang Update
 on:
   schedule:
     - cron: '30 18 * * *'  # Roz 12:00 AM IST (18:30 UTC)
-  workflow_dispatch:        # Manual trigger bhi kar sakte ho
+  workflow_dispatch:
+
 permissions:
   contents: write
+
 jobs:
   update-panchang:
     runs-on: ubuntu-latest
@@ -29,6 +31,11 @@ jobs:
         run: |
           git config user.name "Adhyatmik Bharat Bot"
           git config user.email "bot@adhyatmikbharat.com"
+
+          git pull --rebase origin main
+
           git add today_panchang.json
+
           git diff --staged --quiet || git commit -m "Auto update: $(date '+%d %b %Y') panchang"
-          git push
+
+          git push origin main
