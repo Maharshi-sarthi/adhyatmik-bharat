@@ -4,7 +4,8 @@ on:
   schedule:
     - cron: '30 18 * * *'  # Roz 12:00 AM IST (18:30 UTC)
   workflow_dispatch:        # Manual trigger bhi kar sakte ho
-
+permissions:
+  contents: write
 jobs:
   update-panchang:
     runs-on: ubuntu-latest
