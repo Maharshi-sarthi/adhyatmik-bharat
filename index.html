@@ -2,441 +2,1118 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>आध्यात्मिक भारत | आज का पंचांग</title>
-<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit&family=Crimson+Pro:wght@300;400;600&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#1C0A00">
+<title>आध्यात्मिक भारत | Hindu Panchang & Spiritual Super App</title>
+<meta name="description" content="India ka sabse accurate Hindu Panchang. Tithi, Nakshatra, Muhurat, Vrat Katha. 1 AD se 2100 AD tak.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --saffron:#E8640C; --saffron-deep:#B84A00; --gold:#D4A017; --gold-light:#F5D76E;
-  --cream:#FDF6E3; --brown-deep:#3D1C00; --brown-mid:#6B3A1F;
-  --red:#C0392B; --green:#2D6A4F; --shadow:rgba(180,80,0,0.18); --border:rgba(212,160,23,0.4);
+  /* Warm amber-dark palette — NOT pure black */
+  --bg:          #1C0A00;
+  --bg2:         #261000;
+  --surface:     #331500;
+  --surface2:    #3D1A00;
+  --card:        rgba(55,25,5,0.92);
+  --card2:       rgba(45,20,3,0.85);
+
+  /* Gold */
+  --gold:        #D4940A;
+  --gold-mid:    #E8A820;
+  --gold-bright: #F5C842;
+  --gold-pale:   #F9DFA0;
+  --gold-glow:   rgba(212,148,10,0.2);
+
+  /* Saffron */
+  --saffron:     #E8640C;
+  --saffron2:    #FF7B20;
+  --saffron-dim: rgba(232,100,12,0.15);
+
+  /* Cream text — highly readable on dark warm bg */
+  --t1:  #FAF0DC;
+  --t2:  #D4B896;
+  --t3:  #9A7A5A;
+  --t4:  #5A4030;
+
+  /* Status */
+  --good:  #4ADE80;
+  --bad:   #F87171;
+  --teal:  #22D3EE;
+
+  /* Borders */
+  --b1:  rgba(212,148,10,0.2);
+  --b2:  rgba(212,148,10,0.45);
+  --b3:  rgba(212,148,10,0.08);
+
+  --r1:12px; --r2:18px; --r3:24px; --r4:32px;
+  --header-h:60px;
+  --nav-h:68px;
 }
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Crimson Pro',Georgia,serif;background:#1a0800;color:var(--brown-deep);min-height:100vh}
-.page-bg{background:linear-gradient(160deg,#FDF1DC,#FFF8EE,#FEF3E2);min-height:100vh;padding-bottom:60px}
-.stripe{width:100%;height:16px;background:repeating-linear-gradient(90deg,#E8640C 0,#E8640C 8px,#D4A017 8px,#D4A017 16px,#B84A00 16px,#B84A00 24px)}
-.stripe.bot{background:repeating-linear-gradient(90deg,#B84A00 0,#B84A00 8px,#D4A017 8px,#D4A017 16px,#E8640C 16px,#E8640C 24px);margin-top:30px}
 
-/* HEADER */
-header{background:linear-gradient(135deg,#3D1C00,#5C2A00,#3D1C00);padding:22px 20px 18px;text-align:center;border-bottom:3px solid var(--gold);position:relative;overflow:hidden}
-header::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(212,160,23,0.15),transparent 60%)}
-.om{position:absolute;font-size:2rem;color:var(--gold);top:14px;animation:pulse 3s ease-in-out infinite}
-.om.l{left:24px}.om.r{right:24px}
-@keyframes pulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:.9;transform:scale(1.1)}}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Lora',Georgia,serif;
+  background:var(--bg);
+  color:var(--t1);
+  min-height:100vh;
+  overflow-x:hidden;
+}
+button,select,input{font-family:inherit}
+::-webkit-scrollbar{width:4px;height:4px}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-thumb{background:var(--b1);border-radius:2px}
 
-/* GLOW EFFECT ON BRAND NAME */
-.brand-en{font-family:'Cinzel',serif;font-size:clamp(.9rem,2.5vw,1.3rem);letter-spacing:.25em;color:var(--gold-light)}
-.brand-hi{font-family:'Tiro Devanagari Sanskrit',serif;font-size:clamp(1.8rem,5vw,2.6rem);color:var(--gold);
-  text-shadow:0 0 20px rgba(212,160,23,0.8),0 0 40px rgba(232,100,12,0.5),0 2px 4px rgba(0,0,0,0.5);
-  animation:glow 2.5s ease-in-out infinite;margin:4px 0 8px}
-@keyframes glow{0%,100%{text-shadow:0 0 20px rgba(212,160,23,0.8),0 0 40px rgba(232,100,12,0.5)}
-  50%{text-shadow:0 0 30px rgba(212,160,23,1),0 0 60px rgba(232,100,12,0.8),0 0 80px rgba(212,160,23,0.4)}}
-.tagline{font-size:.82rem;color:rgba(245,215,110,.7);letter-spacing:.1em}
+/* ── BACKGROUND TEXTURE ── */
+body::before{
+  content:'';
+  position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse at 20% 0%,  rgba(232,100,12,0.12),transparent 45%),
+    radial-gradient(ellipse at 80% 60%, rgba(212,148,10,0.08),transparent 40%),
+    radial-gradient(ellipse at 50% 100%,rgba(139,40,0,0.10), transparent 50%);
+  pointer-events:none;
+}
 
-/* CITY BAR */
-.city-bar{background:rgba(255,255,255,.5);border-bottom:1px solid var(--border);padding:7px 16px;display:flex;align-items:center;justify-content:center;gap:10px;font-size:.82rem;color:var(--brown-mid)}
-.city-bar select{background:transparent;border:1px solid var(--border);border-radius:6px;padding:3px 10px;color:var(--saffron-deep);font-family:'Crimson Pro',serif;font-size:.85rem}
+/* ── SUBTLE STARS ── */
+#stars{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
 
-/* DATE BAR */
-.date-bar{background:linear-gradient(90deg,var(--saffron-deep),var(--saffron),var(--saffron-deep));padding:14px 20px;text-align:center}
-.date-main{font-family:'Cinzel',serif;font-size:clamp(.95rem,2.5vw,1.2rem);color:#fff;letter-spacing:.08em}
-.date-hindi{font-family:'Tiro Devanagari Sanskrit',serif;font-size:clamp(1rem,2.5vw,1.25rem);color:var(--gold-light);margin-top:3px}
-.vikram-tag{display:inline-block;background:rgba(0,0,0,.25);border:1px solid rgba(245,215,110,.4);border-radius:20px;padding:3px 14px;font-size:.75rem;color:var(--gold-light);margin-top:6px}
+.s{
+  position:absolute;border-radius:50%;background:var(--gold-pale);
+  animation:tw var(--d,3s) ease-in-out infinite;
+  animation-delay:var(--dl,0s);
+  opacity:0;
+}
+@keyframes tw{0%,100%{opacity:0}50%{opacity:var(--o,.4)}}
 
-/* VRAT BANNER */
-.vrat-banner{margin:14px 12px 0;background:linear-gradient(135deg,#800020,#C0392B);border:1px solid rgba(212,160,23,.5);border-radius:12px;padding:13px 18px;display:flex;align-items:center;gap:12px;box-shadow:0 4px 20px rgba(192,57,43,.3)}
-.vrat-icon{font-size:1.7rem;flex-shrink:0}
-.vrat-name{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.15rem;color:#fff}
-.vrat-sub{font-size:.72rem;color:var(--gold-light);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
-.fest-banner{background:linear-gradient(135deg,#1a4a00,#2d7a00)}
+/* ══════════════════
+   HEADER
+══════════════════ */
+.hdr{
+  position:fixed;top:0;left:0;right:0;
+  height:var(--header-h);z-index:500;
+  background:rgba(20,8,0,0.95);
+  backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--b1);
+  display:flex;align-items:center;
+  padding:0 16px;gap:12px;
+}
 
-/* SUN ROW */
-.sun-row{display:flex;gap:16px;justify-content:center;padding:12px 16px 0;flex-wrap:wrap}
-.ss-item{display:flex;align-items:center;gap:6px}
-.ss-icon{font-size:1.1rem}
-.ss-label{font-size:.68rem;color:var(--brown-mid)}
-.ss-time{font-family:'Cinzel',serif;font-size:.82rem;color:var(--saffron-deep)}
+.hdr-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
+.hdr-icon{
+  width:38px;height:38px;
+  background:linear-gradient(135deg,#8B2000,var(--saffron),var(--gold));
+  border-radius:10px;display:flex;align-items:center;justify-content:center;
+  font-size:19px;
+  box-shadow:0 0 18px rgba(232,100,12,0.4);
+}
+.hdr-en{font-family:'DM Mono',monospace;font-size:0.52rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
+.hdr-hi{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1rem;color:var(--gold-bright)}
 
-/* CONTAINER */
-.container{max-width:960px;margin:0 auto;padding:0 12px}
-.sec-title{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1rem;color:var(--saffron-deep);border-bottom:1px solid var(--border);padding-bottom:5px;margin-bottom:12px;display:flex;align-items:center;gap:7px}
+.hdr-mid{flex:1;display:flex;justify-content:center}
+.hdr-clock{
+  display:flex;align-items:center;gap:10px;
+  background:var(--b3);border:1px solid var(--b1);
+  border-radius:var(--r1);padding:7px 14px;
+}
+.hdr-clock-time{
+  font-family:'DM Mono',monospace;font-size:1.05rem;font-weight:500;
+  color:var(--gold-bright);letter-spacing:0.04em;font-variant-numeric:tabular-nums;
+}
+.live-pill{
+  display:flex;align-items:center;gap:4px;
+  font-size:0.56rem;color:var(--good);
+  font-family:'DM Mono',monospace;letter-spacing:0.1em;
+}
+.ldot{
+  width:5px;height:5px;background:var(--good);border-radius:50%;
+  box-shadow:0 0 5px var(--good);
+  animation:blink 1.5s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
 
-/* CARDS */
-.card{background:rgba(255,248,240,.96);border:1px solid var(--border);border-radius:14px;padding:16px;box-shadow:0 4px 20px var(--shadow);margin-top:14px;position:relative;overflow:hidden}
-.card::before{content:'ॐ';position:absolute;right:-8px;top:-8px;font-size:7rem;color:rgba(232,100,12,.04);font-family:'Tiro Devanagari Sanskrit',serif;pointer-events:none}
+.hdr-actions{display:flex;gap:7px;flex-shrink:0}
+.hbtn{
+  width:36px;height:36px;
+  background:rgba(212,148,10,0.07);
+  border:1px solid var(--b1);border-radius:9px;
+  color:var(--t2);cursor:pointer;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;
+}
+.hbtn:hover{background:var(--gold-glow);border-color:var(--b2);color:var(--gold-bright)}
 
-/* PANCH GRID */
-.panch-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
-.anga{background:rgba(255,255,255,.7);border:1px solid rgba(212,160,23,.3);border-radius:10px;padding:11px 13px;transition:transform .2s,box-shadow .2s}
-.anga:hover{transform:translateY(-2px);box-shadow:0 4px 16px var(--shadow)}
-.anga-label{font-size:.68rem;color:var(--brown-mid);text-transform:uppercase;letter-spacing:.08em;font-family:'Cinzel',serif;margin-bottom:3px}
-.anga-hi{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.05rem;color:var(--saffron-deep)}
-.anga-en{font-size:.75rem;color:var(--brown-mid);margin-top:1px}
-.anga-sub{font-size:.68rem;color:var(--gold);margin-top:2px;font-style:italic}
+/* ══════════════════
+   SHELL (3-col desktop)
+══════════════════ */
+.shell{
+  position:relative;z-index:1;
+  padding-top:var(--header-h);
+  min-height:100vh;
+}
 
-/* TWO COL */
-.two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
-@media(max-width:540px){.two-col{grid-template-columns:1fr}}
+@media(min-width:1100px){
+  .shell{display:flex;align-items:flex-start}
+  .lsb{width:230px;flex-shrink:0;position:sticky;top:var(--header-h);height:calc(100vh - var(--header-h));overflow-y:auto;border-right:1px solid var(--b1)}
+  .main{flex:1;min-width:0}
+  .rsb{width:270px;flex-shrink:0;position:sticky;top:var(--header-h);height:calc(100vh - var(--header-h));overflow-y:auto;border-left:1px solid var(--b1)}
+}
+@media(max-width:1099px){
+  .lsb,.rsb{display:none}
+  .main{width:100%}
+  .shell{padding-bottom:var(--nav-h)}
+}
 
-/* INFO ROW */
-.info-row{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid rgba(212,160,23,.15)}
-.info-row:last-child{border-bottom:none}
-.ikey{font-size:.75rem;color:var(--brown-mid);font-family:'Cinzel',serif;letter-spacing:.04em}
-.ival{font-family:'Tiro Devanagari Sanskrit',serif;font-size:.9rem;text-align:right}
-.ival.bad{color:var(--red)}.ival.good{color:var(--green)}.ival.gold{color:var(--gold)}
+/* ══════════════════
+   LEFT SIDEBAR
+══════════════════ */
+.lsb{background:rgba(15,5,0,0.6);padding:16px 0}
+.snav-item{
+  display:flex;align-items:center;gap:11px;
+  padding:9px 14px;border-radius:var(--r1);
+  cursor:pointer;transition:all .2s;
+  color:var(--t3);font-size:0.88rem;margin:0 8px 2px;
+}
+.snav-item:hover{background:var(--gold-glow);color:var(--t2)}
+.snav-item.active{background:rgba(212,148,10,0.12);color:var(--gold);border:1px solid var(--b1)}
+.snav-ic{font-size:1rem;width:22px;text-align:center;flex-shrink:0}
 
-/* CHAUGHADI */
-.chau-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-@media(max-width:480px){.chau-grid{grid-template-columns:repeat(2,1fr)}}
-.chau{border-radius:10px;padding:9px 7px;text-align:center;border:1px solid transparent}
-.chau.good{background:linear-gradient(135deg,rgba(45,106,79,.12),rgba(45,106,79,.04));border-color:rgba(45,106,79,.3)}
-.chau.bad{background:linear-gradient(135deg,rgba(192,57,43,.10),rgba(192,57,43,.03));border-color:rgba(192,57,43,.2)}
-.chau-name{font-family:'Tiro Devanagari Sanskrit',serif;font-size:.92rem;font-weight:600}
-.chau.good .chau-name{color:var(--green)}.chau.bad .chau-name{color:var(--red)}
-.chau-time{font-size:.62rem;color:var(--brown-mid);margin-top:3px;line-height:1.3}
+.sdivider{height:1px;background:var(--b1);margin:12px 14px}
+.stitle{
+  font-size:0.58rem;color:var(--t4);text-transform:uppercase;
+  letter-spacing:0.18em;padding:0 22px;margin-bottom:8px;
+  font-family:'DM Mono',monospace;
+}
 
-/* GRAHA */
-.graha-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:8px}
-.graha-item{background:rgba(255,255,255,.7);border:1px solid rgba(212,160,23,.25);border-radius:10px;padding:9px;text-align:center}
-.graha-name{font-family:'Tiro Devanagari Sanskrit',serif;font-size:.85rem;color:var(--saffron-deep)}
-.graha-rashi{font-size:.7rem;color:var(--brown-mid);margin-top:3px}
-.graha-deg{font-size:.62rem;color:var(--gold);margin-top:2px}
+.sup-item{
+  background:var(--card2);border:1px solid var(--b1);
+  border-radius:var(--r1);padding:9px 11px;margin:0 8px 7px;
+  cursor:pointer;transition:all .2s;
+}
+.sup-item:hover{border-color:var(--b2)}
+.sup-date{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--saffron);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
+.sup-name{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.85rem;color:var(--t1)}
 
-/* KATHA SECTION */
-.katha-card{background:linear-gradient(135deg,rgba(61,28,0,0.95),rgba(92,42,0,0.95));border:1px solid var(--gold);border-radius:14px;padding:20px;box-shadow:0 6px 30px rgba(0,0,0,.3);margin-top:14px;color:#FDF6E3}
-.katha-title{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.3rem;color:var(--gold);margin-bottom:4px}
-.katha-deity{font-size:.8rem;color:rgba(245,215,110,.7);margin-bottom:14px;letter-spacing:.06em}
-.katha-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
-.ktab{background:rgba(255,255,255,.1);border:1px solid rgba(212,160,23,.3);border-radius:20px;padding:5px 14px;font-size:.78rem;color:var(--gold-light);cursor:pointer;transition:all .2s;font-family:'Cinzel',serif}
-.ktab.active{background:var(--saffron);border-color:var(--saffron);color:#fff}
-.katha-content{display:none}
-.katha-content.active{display:block}
-.katha-text{font-family:'Tiro Devanagari Sanskrit',serif;font-size:.95rem;line-height:1.9;color:rgba(253,246,227,.9)}
-.katha-steps{list-style:none;padding:0}
-.katha-steps li{font-family:'Tiro Devanagari Sanskrit',serif;font-size:.9rem;padding:8px 0;border-bottom:1px solid rgba(212,160,23,.2);color:rgba(253,246,227,.9);display:flex;gap:10px}
-.katha-steps li::before{content:'🔸';flex-shrink:0}
-.mantra-box{background:rgba(212,160,23,.15);border:1px solid rgba(212,160,23,.4);border-radius:10px;padding:12px 16px;margin-top:12px}
-.mantra-label{font-size:.7rem;color:var(--gold);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;font-family:'Cinzel',serif}
-.mantra-text{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1rem;color:var(--gold-light);line-height:1.7}
-.mahatmya-text{font-family:'Tiro Devanagari Sanskrit',serif;font-size:.9rem;line-height:1.8;color:rgba(253,246,227,.85);font-style:italic;border-left:3px solid var(--gold);padding-left:12px}
+/* ══════════════════
+   MAIN
+══════════════════ */
+.mc{max-width:660px;margin:0 auto;padding:18px 14px 32px}
+@media(min-width:1100px){.mc{max-width:100%;padding:22px 26px 40px}}
 
-/* PANDIT AD */
-.pandit-ad{margin-top:14px;background:linear-gradient(135deg,#3D1C00,#5C2A00);border:1px solid var(--gold);border-radius:14px;padding:18px 20px;text-align:center;box-shadow:0 4px 20px rgba(0,0,0,.2)}
-.pandit-ad h3{font-family:'Tiro Devanagari Sanskrit',serif;color:var(--gold);font-size:1.15rem;margin-bottom:6px}
-.pandit-ad p{color:rgba(245,215,110,.8);font-size:.85rem;line-height:1.5}
-.pandit-btn{display:inline-block;margin-top:10px;background:var(--saffron);color:#fff;padding:6px 22px;border-radius:20px;font-size:.8rem;letter-spacing:.06em;font-family:'Cinzel',serif;cursor:pointer}
+/* Ad */
+.ad{
+  background:rgba(212,148,10,0.04);
+  border:1px dashed rgba(212,148,10,0.15);
+  border-radius:var(--r2);padding:14px;
+  text-align:center;margin-bottom:18px;
+}
+.ad-l{font-size:0.56rem;color:var(--t4);text-transform:uppercase;letter-spacing:.15em;margin-bottom:3px;font-family:'DM Mono',monospace}
+.ad-d{font-size:0.78rem;color:var(--t3)}
 
-.fade-in{animation:fadeIn .6s ease both}
-@keyframes fadeIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+/* ── HERO ── */
+.hero{
+  background:
+    radial-gradient(ellipse at 20% 10%,rgba(139,30,0,0.25),transparent 55%),
+    radial-gradient(ellipse at 80% 90%,rgba(212,100,0,0.12),transparent 50%),
+    linear-gradient(150deg,var(--surface2),var(--surface),var(--bg2));
+  border:1px solid var(--b1);
+  border-radius:var(--r4);padding:22px 20px;
+  margin-bottom:18px;position:relative;overflow:hidden;
+}
+.hero::after{
+  content:'ॐ';
+  position:absolute;right:-10px;bottom:-20px;
+  font-family:'Tiro Devanagari Sanskrit',serif;
+  font-size:110px;color:rgba(212,148,10,0.06);
+  pointer-events:none;line-height:1;
+}
+
+.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
+.hero-greet{
+  font-family:'Tiro Devanagari Sanskrit',serif;
+  font-size:clamp(1.5rem,4vw,2rem);
+  background:linear-gradient(135deg,var(--gold-bright),var(--saffron),var(--gold));
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1.15;
+}
+.hero-sub{font-size:0.78rem;color:var(--t3);margin-top:5px;font-family:'DM Mono',monospace}
+
+.mob-clk{
+  background:rgba(212,148,10,0.08);border:1px solid var(--b1);
+  border-radius:var(--r2);padding:9px 13px;text-align:center;min-width:95px;
+}
+.mob-clk-t{font-family:'DM Mono',monospace;font-size:1.05rem;color:var(--gold-bright);font-variant-numeric:tabular-nums}
+.mob-clk-l{display:flex;align-items:center;gap:4px;justify-content:center;font-size:0.55rem;color:var(--good);margin-top:3px;font-family:'DM Mono',monospace}
+@media(min-width:1100px){.mob-clk{display:none}}
+
+/* Date nav */
+.dnav{
+  display:flex;align-items:center;gap:9px;
+  background:rgba(212,148,10,0.05);
+  border:1px solid var(--b1);border-radius:var(--r2);
+  padding:9px 12px;margin-bottom:14px;
+}
+.dnav-btn{
+  width:32px;height:32px;
+  background:rgba(212,148,10,0.1);border:1px solid var(--b1);
+  border-radius:9px;cursor:pointer;color:var(--gold);font-size:17px;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;flex-shrink:0;line-height:1;
+}
+.dnav-btn:hover{background:rgba(212,148,10,0.2);border-color:var(--b2);transform:scale(1.08)}
+.dnav-ctr{flex:1;text-align:center;cursor:pointer}
+.dnav-hi{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.98rem;color:var(--t1);line-height:1.4}
+.dnav-sub{font-size:0.62rem;color:var(--t3);margin-top:2px;font-family:'DM Mono',monospace}
+.today-ch{
+  background:rgba(232,100,12,0.12);border:1px solid rgba(232,100,12,0.3);
+  color:var(--saffron2);padding:5px 11px;border-radius:20px;cursor:pointer;
+  font-size:0.68rem;white-space:nowrap;transition:all .2s;font-family:'DM Mono',monospace;
+}
+.today-ch:hover{background:rgba(232,100,12,0.22)}
+
+/* Samvat chips */
+.sv-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
+.sv-chip{
+  background:rgba(212,148,10,0.07);border:1px solid rgba(212,148,10,0.18);
+  border-radius:20px;padding:4px 11px;
+  font-family:'Tiro Devanagari Sanskrit',serif;
+  font-size:0.72rem;color:rgba(245,200,66,0.85);
+}
+.sv-chip small{font-family:'DM Mono',monospace;font-size:0.57rem;color:var(--t4);margin-left:3px}
+
+/* City */
+.city-row{
+  display:flex;align-items:center;gap:9px;
+  background:rgba(34,211,238,0.04);border:1px solid rgba(34,211,238,0.15);
+  border-radius:var(--r1);padding:7px 13px;
+}
+.city-row select{
+  background:transparent;border:none;
+  color:var(--teal);font-size:0.82rem;flex:1;outline:none;cursor:pointer;
+}
+.city-row select option{background:var(--surface);color:var(--t1)}
+
+/* Sun bar */
+.sun-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:18px}
+.sc{
+  background:var(--card2);border:1px solid var(--b1);
+  border-radius:var(--r2);padding:11px 7px;text-align:center;
+  transition:border-color .2s;
+}
+.sc:hover{border-color:var(--b2)}
+.sc-em{font-size:1.25rem}
+.sc-l{font-size:0.54rem;color:var(--t3);margin-top:4px;text-transform:uppercase;letter-spacing:.07em;font-family:'DM Mono',monospace}
+.sc-v{font-size:0.82rem;font-weight:600;color:var(--gold-bright);margin-top:3px;font-variant-numeric:tabular-nums}
+
+/* Vrat bands */
+.vband{
+  border-radius:var(--r3);padding:13px 16px;
+  display:flex;align-items:center;gap:13px;
+  margin-bottom:11px;border:1px solid;cursor:pointer;
+  transition:transform .2s;position:relative;overflow:hidden;
+}
+.vband:hover{transform:translateX(3px)}
+.vband.vrat{background:linear-gradient(135deg,rgba(120,20,0,0.45),rgba(45,20,3,0.9));border-color:rgba(212,148,10,0.35)}
+.vband.fest{background:linear-gradient(135deg,rgba(20,80,40,0.4),rgba(45,20,3,0.9));border-color:rgba(74,222,128,0.3)}
+.vband-ic{font-size:2rem;flex-shrink:0}
+.vband-name{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.1rem;color:var(--gold-pale)}
+.vband-sub{font-size:0.65rem;color:var(--t3);margin-top:3px;letter-spacing:.05em}
+
+/* Shimmer on vband */
+.vband::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent);
+  transform:translateX(-100%);animation:shimmer 3s ease infinite;
+}
+@keyframes shimmer{to{transform:translateX(200%)}}
+
+/* Section header */
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;margin-top:22px}
+.sh-title{
+  font-family:'Tiro Devanagari Sanskrit',serif;
+  font-size:1.05rem;color:var(--gold-mid);
+  display:flex;align-items:center;gap:7px;
+}
+.sh-more{font-size:0.68rem;color:var(--saffron);cursor:pointer;font-family:'DM Mono',monospace;letter-spacing:.04em}
+
+/* Panchang grid */
+.pg{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
+@media(min-width:540px) and (max-width:1099px){.pg{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1100px){.pg{grid-template-columns:repeat(4,1fr)}}
+
+.pc{
+  background:var(--card);border:1px solid var(--b1);
+  border-radius:var(--r2);padding:13px;
+  transition:all .25s;cursor:default;position:relative;overflow:hidden;
+}
+.pc::after{
+  content:'';position:absolute;top:0;right:0;
+  width:45px;height:45px;
+  background:radial-gradient(circle,rgba(212,148,10,0.08),transparent 70%);
+  border-radius:0 var(--r2) 0 45px;
+}
+.pc:hover{border-color:var(--b2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(212,148,10,0.1)}
+.pc.ok{border-color:rgba(74,222,128,0.25);background:rgba(74,222,128,0.04)}
+.pc.ng{border-color:rgba(248,113,113,0.2);background:rgba(248,113,113,0.04)}
+
+.pc-l{font-size:0.57rem;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;font-family:'DM Mono',monospace}
+/* KEY FIX: much better readability */
+.pc-hi{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.12rem;color:var(--t1);line-height:1.3}
+.pc-en{font-size:0.72rem;color:var(--t2);margin-top:2px}
+.pc-sub{font-size:0.63rem;color:var(--gold-mid);margin-top:3px;font-style:italic}
+
+/* Muhurat */
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:9px}
+@media(min-width:1100px){.mg{grid-template-columns:repeat(3,1fr)}}
+
+.muc{border-radius:var(--r2);padding:13px 15px;border:1px solid;transition:transform .2s}
+.muc:hover{transform:translateY(-2px)}
+.muc.g{background:rgba(74,222,128,0.07);border-color:rgba(74,222,128,0.22)}
+.muc.b{background:rgba(248,113,113,0.07);border-color:rgba(248,113,113,0.18)}
+.muc-l{font-size:0.57rem;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-family:'DM Mono',monospace}
+.muc-n{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.92rem;margin-bottom:4px}
+.muc.g .muc-n{color:var(--good)}
+.muc.b .muc-n{color:var(--bad)}
+.muc-t{font-size:0.78rem;color:var(--t2);font-variant-numeric:tabular-nums}
+
+/* Chaughadi */
+.chau-g{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
+@media(min-width:560px){.chau-g{grid-template-columns:repeat(8,1fr)}}
+
+.cc{
+  border-radius:var(--r1);padding:9px 5px;text-align:center;
+  border:1px solid;transition:all .2s;position:relative;
+}
+.cc.g{background:rgba(74,222,128,0.07);border-color:rgba(74,222,128,0.2)}
+.cc.b{background:rgba(248,113,113,0.06);border-color:rgba(248,113,113,0.15)}
+.cc.now{
+  border-color:var(--gold)!important;
+  box-shadow:0 0 14px rgba(212,148,10,0.45);
+  animation:gnow 2s ease-in-out infinite;
+}
+@keyframes gnow{0%,100%{box-shadow:0 0 10px rgba(212,148,10,0.3)}50%{box-shadow:0 0 22px rgba(212,148,10,0.7)}}
+.cc.now::after{content:'●';position:absolute;top:2px;right:4px;font-size:6px;color:var(--gold)}
+.cc-n{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.84rem;font-weight:600}
+.cc.g .cc-n{color:var(--good)}.cc.b .cc-n{color:var(--bad)}
+.cc-t{font-size:0.52rem;color:var(--t3);margin-top:3px;line-height:1.3}
+
+/* Katha */
+.kw{
+  background:linear-gradient(150deg,rgba(100,30,0,0.3),var(--surface),rgba(180,80,0,0.08));
+  border:1px solid rgba(212,148,10,0.22);
+  border-radius:var(--r4);overflow:hidden;
+  margin-bottom:14px;transition:border-color .2s;
+}
+.kw:hover{border-color:var(--b2)}
+.kw-hdr{padding:17px 18px 0;display:flex;align-items:flex-start;gap:13px}
+.kw-ic{font-size:2rem;flex-shrink:0}
+.kw-title{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.12rem;color:var(--gold-pale)}
+.kw-deity{font-size:0.68rem;color:var(--t3);margin-top:3px}
+.kw-tabs{
+  display:flex;padding:11px 18px 0;
+  border-bottom:1px solid var(--b1);overflow-x:auto;scrollbar-width:none;
+}
+.kw-tabs::-webkit-scrollbar{display:none}
+.ktab{
+  padding:7px 14px;font-size:0.7rem;color:var(--t3);
+  cursor:pointer;border-bottom:2px solid transparent;
+  transition:all .2s;white-space:nowrap;
+  font-family:'DM Mono',monospace;letter-spacing:.04em;
+}
+.ktab:hover{color:var(--gold-mid)}
+.ktab.active{color:var(--gold-bright);border-bottom-color:var(--gold-bright)}
+.kw-body{padding:16px 18px 18px}
+.kc{display:none}.kc.active{display:block}
+/* Readable body text */
+.kc-mah{
+  font-family:'Tiro Devanagari Sanskrit',serif;
+  font-size:0.93rem;line-height:1.95;color:var(--t2);
+  font-style:italic;border-left:2px solid var(--gold);padding-left:13px;
+}
+.kc-txt{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.92rem;line-height:1.95;color:var(--t2)}
+.kc-steps{list-style:none}
+.kc-steps li{
+  font-family:'Tiro Devanagari Sanskrit',serif;
+  font-size:0.88rem;padding:8px 0;
+  border-bottom:1px solid rgba(212,148,10,0.1);
+  color:var(--t2);display:flex;gap:9px;align-items:flex-start;line-height:1.7;
+}
+.kc-steps li::before{content:'🔸';flex-shrink:0;font-size:0.72rem;margin-top:3px}
+.mantra-b{
+  background:rgba(212,148,10,0.07);border:1px solid rgba(212,148,10,0.18);
+  border-radius:var(--r1);padding:13px 15px;margin-top:9px;
+}
+.m-lbl{font-size:0.57rem;color:var(--gold-mid);text-transform:uppercase;letter-spacing:.14em;margin-bottom:5px;font-family:'DM Mono',monospace}
+.m-txt{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.95rem;line-height:1.85;color:var(--gold-pale)}
+
+/* Graha */
+.gf{display:flex;gap:9px;overflow-x:auto;padding-bottom:5px;scrollbar-width:none}
+.gf::-webkit-scrollbar{display:none}
+.gc{
+  flex-shrink:0;min-width:78px;
+  background:var(--card2);border:1px solid var(--b1);
+  border-radius:var(--r2);padding:10px;text-align:center;
+  transition:all .2s;
+}
+.gc:hover{border-color:var(--b2);transform:translateY(-3px)}
+.gc-n{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.87rem;color:var(--gold-mid)}
+.gc-r{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.77rem;color:var(--t2);margin-top:4px}
+.gc-d{font-size:0.58rem;color:var(--t4);margin-top:2px;font-family:'DM Mono',monospace}
+
+/* Reels */
+.reel-row{display:flex;gap:11px;overflow-x:auto;padding-bottom:7px;scrollbar-width:none}
+.reel-row::-webkit-scrollbar{display:none}
+.rcard{
+  flex-shrink:0;width:170px;
+  background:var(--surface2);border:1px solid var(--b1);
+  border-radius:var(--r3);overflow:hidden;cursor:pointer;transition:all .25s;
+}
+.rcard:hover{transform:scale(1.03);border-color:var(--b2)}
+.rthumb{width:100%;height:265px;background:var(--surface);position:relative;overflow:hidden}
+.rthumb img{width:100%;height:100%;object-fit:cover}
+.rplay{
+  position:absolute;inset:0;
+  background:rgba(0,0,0,0.28);
+  display:flex;align-items:center;justify-content:center;font-size:2rem;
+  transition:background .2s;
+}
+.rcard:hover .rplay{background:rgba(0,0,0,0.12)}
+.rinfo{padding:9px 11px}
+.rtitle{
+  font-family:'Tiro Devanagari Sanskrit',serif;
+  font-size:0.8rem;color:var(--t1);line-height:1.4;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+}
+.rmeta{font-size:0.62rem;color:var(--t3);margin-top:4px;font-family:'DM Mono',monospace}
+
+/* CTA */
+.cta{
+  background:linear-gradient(135deg,rgba(120,30,0,0.5),rgba(200,80,0,0.2),rgba(30,10,0,0.9));
+  border:1px solid rgba(232,100,12,0.35);
+  border-radius:var(--r4);padding:22px 20px;
+  text-align:center;margin:22px 0;position:relative;overflow:hidden;
+}
+.cta::before{content:'🙏';position:absolute;right:-10px;bottom:-15px;font-size:90px;opacity:0.06;line-height:1}
+.cta-title{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.25rem;color:var(--gold-pale);margin-bottom:7px}
+.cta-sub{font-size:0.83rem;color:var(--t2);line-height:1.7;margin-bottom:16px}
+.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.cb{padding:10px 20px;border-radius:var(--r2);font-size:0.83rem;font-weight:600;cursor:pointer;transition:all .2s}
+.cb-main{background:linear-gradient(135deg,var(--saffron),var(--gold));color:#000;border:none}
+.cb-main:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(232,100,12,0.35)}
+.cb-wa{background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.4);color:#25D366}
+.cb-wa:hover{background:rgba(37,211,102,0.18)}
+
+/* Footer */
+.ft{
+  background:rgba(10,3,0,0.97);
+  border-top:1px solid var(--b1);
+  padding:28px 18px 22px;margin-top:28px;
+}
+.ft-in{max-width:860px;margin:0 auto}
+.ft-top{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+@media(min-width:560px){.ft-top{grid-template-columns:2fr 1fr 1fr 1fr}}
+.ft-brand{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.05rem;color:var(--gold);margin-bottom:6px}
+.ft-tag{font-size:0.74rem;color:var(--t4);line-height:1.75}
+.ft-col-t{font-size:0.58rem;color:var(--t4);text-transform:uppercase;letter-spacing:.16em;margin-bottom:9px;font-family:'DM Mono',monospace}
+.ft-lnk{font-size:0.82rem;color:var(--t3);cursor:pointer;padding:3px 0;transition:color .2s;display:block}
+.ft-lnk:hover{color:var(--gold-mid)}
+.ft-copy{
+  padding-top:14px;border-top:1px solid var(--b1);
+  text-align:center;font-size:0.68rem;color:var(--t4);
+  font-family:'DM Mono',monospace;
+}
+
+/* Right sidebar */
+.rsb{background:rgba(10,3,0,0.5);padding:18px 14px}
+.rw{
+  background:var(--card2);border:1px solid var(--b1);
+  border-radius:var(--r3);padding:14px;margin-bottom:14px;
+}
+.rw-t{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.95rem;color:var(--gold-mid);margin-bottom:11px;display:flex;align-items:center;gap:6px}
+.rr{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--b1)}
+.rr:last-child{border-bottom:none}
+.rr-k{font-size:0.75rem;color:var(--t3)}
+.rr-v{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.87rem;text-align:right}
+.rr-v.g{color:var(--good)}.rr-v.b{color:var(--bad)}.rr-v.gold{color:var(--gold-mid)}
+
+/* Bottom nav */
+.bnav{
+  display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;
+  background:rgba(10,3,0,0.97);backdrop-filter:blur(20px);
+  border-top:1px solid var(--b1);
+  padding:7px 0 env(safe-area-inset-bottom,7px);
+}
+@media(max-width:1099px){.bnav{display:flex;justify-content:space-around}}
+.ntab{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 3px;cursor:pointer;transition:all .2s}
+.ntab-i{font-size:1.25rem;transition:filter .2s}
+.ntab-l{font-size:0.56rem;color:var(--t4);font-family:'DM Mono',monospace;letter-spacing:.03em;transition:color .2s}
+.ntab.active .ntab-l{color:var(--gold-mid)}
+.ntab.active .ntab-i{filter:drop-shadow(0 0 7px rgba(212,148,10,0.8))}
+
+/* Date picker modal */
+.dpm-ov{
+  display:none;position:fixed;inset:0;z-index:600;
+  background:rgba(10,3,0,0.93);backdrop-filter:blur(10px);
+  align-items:center;justify-content:center;
+}
+.dpm-ov.open{display:flex}
+.dpm{
+  background:var(--surface2);border:1px solid var(--b2);
+  border-radius:var(--r4);padding:26px;width:min(360px,92vw);
+}
+.dpm-title{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.08rem;color:var(--gold-bright);text-align:center;margin-bottom:5px}
+.dpm-hint{font-size:0.68rem;color:var(--t4);text-align:center;margin-bottom:16px;font-family:'DM Mono',monospace}
+.dpm-row{display:flex;gap:8px;margin-bottom:14px}
+.dp-in{
+  flex:1;background:rgba(212,148,10,0.06);
+  border:1px solid var(--b1);border-radius:var(--r1);
+  color:var(--t1);padding:9px 11px;font-size:0.87rem;outline:none;
+}
+.dp-in:focus{border-color:var(--gold)}
+.dp-in option{background:var(--surface);color:var(--t1)}
+.dpm-acts{display:flex;gap:9px}
+.dp-cancel{flex:1;padding:10px;border-radius:var(--r1);background:transparent;border:1px solid var(--b1);color:var(--t3);cursor:pointer;font-size:0.8rem;transition:all .2s}
+.dp-cancel:hover{border-color:var(--gold-mid);color:var(--gold-mid)}
+.dp-go{flex:1.6;padding:10px;border-radius:var(--r1);background:linear-gradient(135deg,var(--saffron),var(--gold));color:#000;border:none;cursor:pointer;font-size:0.82rem;font-weight:700;transition:all .2s}
+.dp-go:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(232,100,12,0.35)}
+
+/* Animations */
+.fu{animation:fu .5s ease both}
+@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+.fu:nth-child(1){animation-delay:.03s}.fu:nth-child(2){animation-delay:.06s}
+.fu:nth-child(3){animation-delay:.09s}.fu:nth-child(4){animation-delay:.12s}
+.fu:nth-child(5){animation-delay:.15s}.fu:nth-child(6){animation-delay:.18s}
+.fu:nth-child(7){animation-delay:.21s}.fu:nth-child(8){animation-delay:.24s}
+
+.loader{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:160px;gap:10px}
+.om-anim{
+  font-family:'Tiro Devanagari Sanskrit',serif;
+  font-size:2.2rem;color:var(--gold-mid);
+  animation:oapulse 2.5s ease-in-out infinite;
+}
+@keyframes oapulse{0%,100%{opacity:0.35;transform:scale(1)}50%{opacity:1;transform:scale(1.12)}}
+.loader-t{font-size:0.75rem;color:var(--t4);font-family:'DM Mono',monospace;animation:blink 1.5s ease infinite}
+@keyframes blink{0%,100%{opacity:.5}50%{opacity:1}}
+
 </style>
 </head>
 <body>
-<div class="page-bg">
-  <div class="stripe"></div>
 
-  <header>
-    <div class="om l">ॐ</div>
-    <div class="om r">ॐ</div>
-    <div class="brand-en">ADHYATMIK BHARAT</div>
-    <div class="brand-hi">आध्यात्मिक भारत</div>
-    <div class="tagline">॥ सनातन ज्ञान · Hindu Panchang · Aaj Ka Din ॥</div>
-  </header>
+<!-- SUBTLE STARS -->
+<div id="stars"></div>
 
-  <div class="city-bar">
-    📍 शहर चुनें:
-    <select id="citySelect">
-      <option>Delhi</option><option>Mumbai</option><option>Bangalore</option>
-      <option>Varanasi</option><option>Jaipur</option><option>Haridwar</option>
-      <option>Ujjain</option><option>Mathura</option><option>Chennai</option><option>Kolkata</option>
-    </select>
-  </div>
-
-  <div class="date-bar">
-    <div class="date-main" id="dateMain"></div>
-    <div class="date-hindi" id="dateHindi"></div>
-    <div><span class="vikram-tag" id="vikramTag"></span></div>
-  </div>
-
-  <div class="container">
-    <div id="vratBanner"></div>
-    <div class="sun-row" id="sunRow"></div>
-
-    <!-- Panch Ang -->
-    <div class="card fade-in">
-      <div class="sec-title">🔱 पञ्चांग — Panch Ang</div>
-      <div class="panch-grid" id="panchGrid"></div>
+<!-- DATE PICKER -->
+<div class="dpm-ov" id="dpov">
+  <div class="dpm">
+    <div class="dpm-title">📅 कोई भी तिथि खोजें</div>
+    <div class="dpm-hint">1 AD से 2100 AD तक — किसी भी युग का पंचांग</div>
+    <div class="dpm-row">
+      <select id="dpD" class="dp-in"><option value="">दिन</option></select>
+      <select id="dpM" class="dp-in">
+        <option value="">माह</option>
+        <option value="1">जनवरी</option><option value="2">फरवरी</option><option value="3">मार्च</option>
+        <option value="4">अप्रैल</option><option value="5">मई</option><option value="6">जून</option>
+        <option value="7">जुलाई</option><option value="8">अगस्त</option><option value="9">सितंबर</option>
+        <option value="10">अक्टूबर</option><option value="11">नवंबर</option><option value="12">दिसंबर</option>
+      </select>
+      <input id="dpY" class="dp-in" type="number" placeholder="वर्ष" min="1" max="2100" style="max-width:82px">
     </div>
-
-    <!-- Shubh + Ashubh -->
-    <div class="two-col">
-      <div class="card fade-in">
-        <div class="sec-title">✨ शुभ समय</div>
-        <div id="shubhContent"></div>
-      </div>
-      <div class="card fade-in">
-        <div class="sec-title">⚠️ अशुभ काल</div>
-        <div id="ashubhContent"></div>
-      </div>
-    </div>
-
-    <!-- Chaughadi -->
-    <div class="card fade-in">
-      <div class="sec-title">🕐 दिन चौघड़िया</div>
-      <div class="chau-grid" id="chauGrid"></div>
-    </div>
-
-    <!-- Vrat Katha Section -->
-    <div id="kathaSection"></div>
-
-    <!-- Festival Section -->
-    <div id="festivalSection"></div>
-
-    <!-- Graha -->
-    <div class="card fade-in">
-      <div class="sec-title">🪐 ग्रह स्थिति</div>
-      <div class="graha-grid" id="grahaGrid"></div>
-    </div>
-
-    <!-- Pandit Ad -->
-    <div class="pandit-ad fade-in">
-      <h3>🙏 आपके घर पर पूजा-पाठ करवाएं</h3>
-      <p>आध्यात्मिक भारत के साथ जुड़े अनुभवी पंडित जी — गृह पूजा, सत्यनारायण कथा, हवन, और सभी संस्कारों के लिए</p>
-      <span class="pandit-btn">📞 अभी संपर्क करें</span>
+    <div class="dpm-acts">
+      <button class="dp-cancel" onclick="dpC()">रद्द करें</button>
+      <button class="dp-go" onclick="dpGo()">🔍 पंचांग देखें</button>
     </div>
   </div>
-
-  <div class="stripe bot"></div>
 </div>
 
+<!-- HEADER -->
+<header class="hdr">
+  <a class="hdr-logo" href="#">
+    <div class="hdr-icon">🕉️</div>
+    <div>
+      <div class="hdr-en">ADHYATMIK BHARAT</div>
+      <div class="hdr-hi">आध्यात्मिक भारत</div>
+    </div>
+  </a>
+  <div class="hdr-mid">
+    <div class="hdr-clock">
+      <div>
+        <div class="hdr-clock-time" id="hclk">00:00:00</div>
+        <div class="live-pill"><div class="ldot"></div>LIVE IST</div>
+      </div>
+    </div>
+  </div>
+  <div class="hdr-actions">
+    <button class="hbtn" onclick="dpO()" title="Date Search">🔍</button>
+    <button class="hbtn" title="Notifications">🔔</button>
+    <button class="hbtn" title="Menu">☰</button>
+  </div>
+</header>
+
+<!-- SHELL -->
+<div class="shell">
+
+  <!-- LEFT SIDEBAR -->
+  <aside class="lsb">
+    <nav>
+      <div class="snav-item active"><span class="snav-ic">🏠</span>Home</div>
+      <div class="snav-item"><span class="snav-ic">📅</span>Panchang</div>
+      <div class="snav-item"><span class="snav-ic">🪔</span>Vrat Katha</div>
+      <div class="snav-item"><span class="snav-ic">📆</span>Calendar</div>
+      <div class="snav-item"><span class="snav-ic">⭐</span>Rashifal</div>
+      <div class="snav-item"><span class="snav-ic">🎬</span>Videos</div>
+    </nav>
+    <div class="sdivider"></div>
+    <div class="stitle">Upcoming Festivals</div>
+    <div id="supcoming">
+      <div class="loader"><div class="om-anim">ॐ</div></div>
+    </div>
+    <div class="sdivider"></div>
+    <nav>
+      <div class="snav-item"><span class="snav-ic">ℹ️</span>About Us</div>
+      <div class="snav-item"><span class="snav-ic">📞</span>Contact</div>
+      <div class="snav-item"><span class="snav-ic">🔒</span>Privacy Policy</div>
+      <div class="snav-item"><span class="snav-ic">⚠️</span>Disclaimer</div>
+    </nav>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+    <div class="mc">
+
+      <div class="ad"><div class="ad-l">Advertisement</div><div class="ad-d">Google AdSense — Leaderboard (728×90)</div></div>
+
+      <!-- HERO -->
+      <div class="hero fu">
+        <div class="hero-top">
+          <div>
+            <div class="hero-greet" id="hgreet">🙏 शुभ प्रभात</div>
+            <div class="hero-sub" id="hdateline">—</div>
+          </div>
+          <div class="mob-clk">
+            <div class="mob-clk-t" id="mclk">00:00:00</div>
+            <div class="mob-clk-l"><div class="ldot"></div>LIVE</div>
+          </div>
+        </div>
+
+        <div class="dnav">
+          <button class="dnav-btn" onclick="navD(-1)">‹</button>
+          <div class="dnav-ctr" onclick="dpO()">
+            <div class="dnav-hi" id="dnavhi">लोड हो रहा है...</div>
+            <div class="dnav-sub" id="dnavsub">किसी भी तिथि के लिए यहाँ क्लिक करें</div>
+          </div>
+          <button class="dnav-btn" onclick="navD(1)">›</button>
+          <button class="today-ch" onclick="goToday()">आज</button>
+        </div>
+
+        <div class="sv-row" id="svrow"></div>
+
+        <div class="city-row">
+          <span style="color:var(--teal);font-size:.9rem">📍</span>
+          <select id="citysel" onchange="changeCity()">
+            <option value="Delhi">Delhi — दिल्ली</option>
+            <option value="Mumbai">Mumbai — मुंबई</option>
+            <option value="Varanasi">Varanasi — वाराणसी</option>
+            <option value="Bangalore">Bangalore — बेंगलुरु</option>
+            <option value="Chennai">Chennai — चेन्नई</option>
+            <option value="Kolkata">Kolkata — कोलकाता</option>
+            <option value="Jaipur">Jaipur — जयपुर</option>
+            <option value="Haridwar">Haridwar — हरिद्वार</option>
+            <option value="Ujjain">Ujjain — उज्जैन</option>
+            <option value="Mathura">Mathura — मथुरा</option>
+            <option value="Lucknow">Lucknow — लखनऊ</option>
+            <option value="Pune">Pune — पुणे</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- SUN BAR -->
+      <div class="sun-bar fu" id="sunbar">
+        <div class="loader" style="grid-column:1/-1"><div class="om-anim">ॐ</div><div class="loader-t">पंचांग लोड हो रहा है...</div></div>
+      </div>
+
+      <!-- VRAT -->
+      <div id="vbanner"></div>
+
+      <!-- PANCH ANG -->
+      <div class="sh fu"><div class="sh-title">🔱 पञ्चांग — Panch Ang</div></div>
+      <div class="pg fu" id="pgrid">
+        <div class="loader" style="grid-column:1/-1"><div class="om-anim">ॐ</div></div>
+      </div>
+
+      <div class="ad" style="margin-top:18px"><div class="ad-l">Sponsored</div><div class="ad-d">Astrology Consultation (300×250)</div></div>
+
+      <!-- MUHURAT -->
+      <div class="sh fu"><div class="sh-title">✨ मुहूर्त</div></div>
+      <div class="mg fu" id="mugrid"></div>
+
+      <!-- CHAUGHADI -->
+      <div class="sh fu"><div class="sh-title">🕐 दिन चौघड़िया</div><div class="sh-more">विस्तार ›</div></div>
+      <div class="chau-g fu" id="chaugrid"></div>
+
+      <!-- KATHA -->
+      <div id="kathasec"></div>
+      <div id="festsec"></div>
+
+      <!-- GRAHA -->
+      <div class="sh fu"><div class="sh-title">🪐 ग्रह स्थिति</div></div>
+      <div class="gf fu" id="graflex"></div>
+
+      <!-- VIDEOS -->
+      <div class="sh fu" style="margin-top:26px"><div class="sh-title">🎬 आध्यात्मिक वीडियो</div><div class="sh-more">सभी ›</div></div>
+      <div class="reel-row fu" id="reelrow"></div>
+
+      <!-- CTA -->
+      <div class="cta fu">
+        <div class="cta-title">🙏 घर पर पूजा-पाठ करवाएं</div>
+        <div class="cta-sub">आध्यात्मिक भारत के अनुभवी पंडित जी — गृह पूजा, सत्यनारायण कथा, हवन, मुंडन, और सभी संस्कार। ऑनलाइन बुकिंग उपलब्ध।</div>
+        <div class="cta-btns">
+          <button class="cb cb-main">📞 अभी संपर्क करें</button>
+          <button class="cb cb-wa">💬 WhatsApp</button>
+        </div>
+      </div>
+
+      <div class="ad"><div class="ad-l">Advertisement</div><div class="ad-d">Footer Banner (320×100)</div></div>
+
+      <!-- FOOTER -->
+      <footer class="ft">
+        <div class="ft-in">
+          <div class="ft-top">
+            <div>
+              <div class="ft-brand">🕉️ आध्यात्मिक भारत</div>
+              <div class="ft-tag">भारत की वैदिक परंपरा को आधुनिक तकनीक से जोड़ने का प्रयास।<br>Swiss Ephemeris — 1 AD से 2100 AD तक सटीक पंचांग।</div>
+            </div>
+            <div>
+              <div class="ft-col-t">Quick Links</div>
+              <div class="ft-lnk">🏠 Home</div>
+              <div class="ft-lnk">📅 Panchang</div>
+              <div class="ft-lnk">🪔 Vrat Katha</div>
+              <div class="ft-lnk">📆 Calendar</div>
+            </div>
+            <div>
+              <div class="ft-col-t">Info</div>
+              <div class="ft-lnk">ℹ️ About Us</div>
+              <div class="ft-lnk">📞 Contact</div>
+              <div class="ft-lnk">🔒 Privacy</div>
+              <div class="ft-lnk">⚠️ Disclaimer</div>
+            </div>
+            <div>
+              <div class="ft-col-t">More</div>
+              <div class="ft-lnk">📊 Data Sources</div>
+              <div class="ft-lnk">📲 Install App</div>
+              <div class="ft-lnk">🎬 YouTube</div>
+              <div class="ft-lnk">📢 Telegram</div>
+            </div>
+          </div>
+          <div class="ft-copy">© 2026 Adhyatmik Bharat · All Rights Reserved · <span style="color:var(--saffron)">Jai Shri Ram 🙏</span></div>
+        </div>
+      </footer>
+    </div>
+  </main>
+
+  <!-- RIGHT SIDEBAR -->
+  <aside class="rsb">
+    <div class="rw">
+      <div class="rw-t">⏰ आज का समय</div>
+      <div id="rwtimings"><div class="loader"><div class="om-anim">ॐ</div></div></div>
+    </div>
+    <div class="rw">
+      <div class="rw-t">🌙 अशुभ काल</div>
+      <div id="rwbad"></div>
+    </div>
+    <div class="ad"><div class="ad-l">Side Ad</div><div class="ad-d">300×600</div></div>
+  </aside>
+</div>
+
+<!-- BOTTOM NAV -->
+<nav class="bnav">
+  <div class="ntab active"><div class="ntab-i">🏠</div><div class="ntab-l">Home</div></div>
+  <div class="ntab"><div class="ntab-i">📅</div><div class="ntab-l">Panchang</div></div>
+  <div class="ntab"><div class="ntab-i">🪔</div><div class="ntab-l">Vrat</div></div>
+  <div class="ntab"><div class="ntab-i">🎬</div><div class="ntab-l">Videos</div></div>
+  <div class="ntab"><div class="ntab-i">👤</div><div class="ntab-l">Profile</div></div>
+</nav>
+
 <script>
-// Tab switcher
-function showTab(cardId, tabName) {
-  document.querySelectorAll(`#${cardId} .katha-content`).forEach(c => c.classList.remove('active'));
-  document.querySelectorAll(`#${cardId} .ktab`).forEach(t => t.classList.remove('active'));
-  document.getElementById(`${cardId}-${tabName}`).classList.add('active');
-  event.target.classList.add('active');
+/* ── STARS (subtle, not overwhelming) ── */
+(function(){
+  const c=document.getElementById('stars');
+  for(let i=0;i<60;i++){
+    const s=document.createElement('div');
+    s.className='s';
+    const sz=Math.random()*1.2+0.4;
+    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--o:${(Math.random()*0.4+0.1).toFixed(2)};--d:${(Math.random()*4+2).toFixed(1)}s;--dl:${(Math.random()*5).toFixed(1)}s`;
+    c.appendChild(s);
+  }
+})();
+
+/* ── INIT DAY DROPDOWN ── */
+(function(){
+  const s=document.getElementById('dpD');
+  for(let i=1;i<=31;i++){const o=document.createElement('option');o.value=i;o.textContent=i;s.appendChild(o)}
+})();
+
+/* ── STATE ── */
+let P=null,VC=null,FC=null;
+let CUR=new Date().toISOString().slice(0,10);
+let CITY='Delhi';
+
+/* ── CLOCK ── */
+function tick(){
+  const n=new Date();
+  const t=[n.getHours(),n.getMinutes(),n.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');
+  document.getElementById('hclk').textContent=t;
+  document.getElementById('mclk').textContent=t;
+  const h=n.getHours();
+  const g=h<5?'🌙 शुभ रात्रि':h<12?'🙏 शुभ प्रभात':h<17?'☀️ शुभ दोपहर':h<20?'🌅 शुभ संध्या':'🌙 शुभ रात्रि';
+  const el=document.getElementById('hgreet');
+  if(el)el.textContent=g;
+}
+setInterval(tick,1000);tick();
+
+/* ── LOAD ── */
+async function loadAll(){
+  try{
+    const[a,b,c]=await Promise.all([
+      fetch('today_panchang.json').then(r=>r.json()),
+      fetch('vrat_content.json').then(r=>r.json()),
+      fetch('festival_content.json').then(r=>r.json()),
+    ]);
+    P=a;VC=b;FC=c;render();
+  }catch(e){
+    document.getElementById('sunbar').innerHTML=`<div style="color:var(--bad);font-size:.82rem;padding:18px;grid-column:1/-1">❌ Data load error.<br><code style="font-size:.7rem;color:var(--t3)">python -X utf8 panchang_engine.py > today_panchang.json</code><br>phir: <code style="font-size:.7rem;color:var(--t3)">python -m http.server 8000</code></div>`;
+  }
 }
 
-// Build katha card HTML
-function buildKathaCard(id, title, deity, mahatmya, katha, vidhi, mantra) {
-  const steps = Array.isArray(vidhi)
-    ? vidhi.map(s => `<li>${s}</li>`).join('')
-    : (vidhi?.steps || []).map(s => `<li>${s}</li>`).join('');
+/* ── RENDER ── */
+function render(){
+  if(!P)return;
+  const d=P,hc=d.hindu_calendar,pa=d.panch_ang,sm=d.sun_moon,dt=d.date,inau=d.inauspicious,au=d.auspicious;
+  const meta=d.meta||{};
 
-  return `
-  <div class="katha-card fade-in" id="${id}">
-    <div class="katha-title">${title}</div>
-    <div class="katha-deity">देवता: ${deity}</div>
-    <div class="katha-tabs">
-      <span class="ktab active" onclick="showTab('${id}','mahatmya')">📖 महात्म्य</span>
-      <span class="ktab" onclick="showTab('${id}','katha')">📜 कथा</span>
-      <span class="ktab" onclick="showTab('${id}','vidhi')">🪔 विधि</span>
-      ${mantra ? `<span class="ktab" onclick="showTab('${id}','mantra')">🕉️ मंत्र</span>` : ''}
-    </div>
-    <div id="${id}-mahatmya" class="katha-content active">
-      <p class="mahatmya-text">${mahatmya || '—'}</p>
-    </div>
-    <div id="${id}-katha" class="katha-content">
-      <p class="katha-text">${katha || '—'}</p>
-    </div>
-    <div id="${id}-vidhi" class="katha-content">
-      <ul class="katha-steps">${steps}</ul>
-    </div>
-    ${mantra ? `
-    <div id="${id}-mantra" class="katha-content">
-      <div class="mantra-box">
-        <div class="mantra-label">मंत्र</div>
-        <div class="mantra-text">${mantra}</div>
+  /* Date info */
+  const dobj=new Date((meta.date_str||CUR)+'T00:00:00');
+  const den=dobj.toLocaleDateString('en-IN',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  document.getElementById('hdateline').textContent=den;
+  document.getElementById('dnavhi').textContent=`${dt.weekday_hi} · ${dt.gregorian||den}`;
+  document.getElementById('dnavsub').textContent=`${(hc.amanta_hi||hc.masa_hi||'—')} · ${hc.paksha_hi||'—'} · ${d.city||CITY}`;
+
+  /* Samvat */
+  document.getElementById('svrow').innerHTML=`
+    <div class="sv-chip">विक्रम सम्वत् ${hc.vikram_samvat} <small>${hc.samvat_name||''}</small></div>
+    <div class="sv-chip">शक ${hc.shaka_samvat}</div>
+    <div class="sv-chip">${hc.amanta_hi||hc.masa_hi||'—'} <small>Amanta</small></div>
+    <div class="sv-chip">${hc.purnimanta_hi||'—'} <small>Purnimanta</small></div>
+  `;
+
+  /* Sun */
+  document.getElementById('sunbar').innerHTML=`
+    <div class="sc"><div class="sc-em">🌅</div><div class="sc-l">सूर्योदय</div><div class="sc-v">${sm.sunrise}</div></div>
+    <div class="sc"><div class="sc-em">🌇</div><div class="sc-l">सूर्यास्त</div><div class="sc-v">${sm.sunset}</div></div>
+    <div class="sc"><div class="sc-em">🌙</div><div class="sc-l">चन्द्रोदय</div><div class="sc-v">${sm.moonrise||'N/A'}</div></div>
+    <div class="sc"><div class="sc-em">☀️</div><div class="sc-l">मध्याह्न</div><div class="sc-v">${sm.solar_noon||'—'}</div></div>
+  `;
+
+  /* Vrat banners */
+  let vb='';
+  if(d.vrats&&d.vrats.length){
+    const maj=d.vrats.find(v=>v.type==='major')||d.vrats[0];
+    const all=d.vrats.map(v=>v.name_hi||v.name).join(' · ');
+    vb+=`<div class="vband vrat fu"><div class="vband-ic">🪔</div><div><div class="vband-name">${maj.name_hi||maj.name}</div><div class="vband-sub">आज का व्रत · ${all}</div></div></div>`;
+  }
+  if(d.festival){
+    vb+=`<div class="vband fest fu"><div class="vband-ic">🎉</div><div><div class="vband-name" style="color:var(--good)">${d.festival.name_hi||d.festival.name}</div><div class="vband-sub">आज का पर्व</div></div></div>`;
+  }
+  document.getElementById('vbanner').innerHTML=vb;
+
+  /* Panchang */
+  const ti=pa.tithi,nak=pa.nakshatra,yo=pa.yoga,k1=pa.karana1,k2=pa.karana2;
+  const yc=yo.nature==='good'?'ok':yo.nature==='bad'?'ng':'';
+  const items=[
+    {l:'Tithi तिथि',h:ti.name_hi,e:ti.name,s:ti.paksha_hi},
+    {l:'Nakshatra नक्षत्र',h:nak.name_hi,e:nak.name,s:`पाद ${nak.pada} · ${nak.lord}`},
+    {l:'Yoga योग',h:yo.name_hi,e:yo.name,s:yo.nature==='good'?'✅ शुभ':'⚠️ अशुभ',c:yc},
+    {l:'Karana I',h:k1?k1.name_hi:'—',e:k1?k1.name:'—',s:k1?k1.nature:''},
+    {l:'Karana II',h:k2?k2.name_hi:'—',e:k2?k2.name:'—',s:k2?k2.nature:''},
+    {l:'Var वार',h:dt.weekday_hi,e:dt.weekday_en,s:dt.day_deity_hi||dt.day_deity||''},
+    {l:'Sun Rashi सूर्य',h:sm.sun_rashi_hi||sm.sun_rashi,e:sm.sun_rashi,s:''},
+    {l:'Moon Rashi चंद्र',h:sm.moon_rashi_hi||sm.moon_rashi,e:sm.moon_rashi,s:''},
+  ];
+  document.getElementById('pgrid').innerHTML=items.map(a=>`
+    <div class="pc ${a.c||''} fu">
+      <div class="pc-l">${a.l}</div>
+      <div class="pc-hi">${a.h||'—'}</div>
+      <div class="pc-en">${a.e||'—'}</div>
+      ${a.s?`<div class="pc-sub">${a.s}</div>`:''}
+    </div>`).join('');
+
+  /* Muhurat */
+  const dur=(inau.dur_muhurtam||[]).join('<br>')||'—';
+  document.getElementById('mugrid').innerHTML=`
+    <div class="muc g fu"><div class="muc-l">Abhijit Muhurat</div><div class="muc-n">अभिजीत मुहूर्त</div><div class="muc-t">${au.abhijit_muhurat||'—'}</div></div>
+    <div class="muc g fu"><div class="muc-l">Amrit Kalam</div><div class="muc-n">अमृत काल</div><div class="muc-t">${au.amrit_kalam||'—'}</div></div>
+    <div class="muc b fu"><div class="muc-l">Rahu Kalam</div><div class="muc-n">राहु काल</div><div class="muc-t">${inau.rahu_kalam||'—'}</div></div>
+    <div class="muc b fu"><div class="muc-l">Yama Kandam</div><div class="muc-n">यम कण्डम</div><div class="muc-t">${inau.yama_kandam||'—'}</div></div>
+    <div class="muc b fu"><div class="muc-l">Gulika Kalam</div><div class="muc-n">गुलिक काल</div><div class="muc-t">${inau.gulika_kalam||'—'}</div></div>
+    <div class="muc b fu"><div class="muc-l">Varjyam</div><div class="muc-n">वर्ज्यम</div><div class="muc-t">${inau.varjyam||'—'}</div></div>
+  `;
+
+  /* Chaughadi + live slot */
+  const now=new Date();
+  const parseT=t=>{const[tm,ap]=t.trim().split(' ');let[h,m]=tm.split(':').map(Number);if(ap==='PM'&&h!==12)h+=12;if(ap==='AM'&&h===12)h=0;return h*60+m};
+  document.getElementById('chaugrid').innerHTML=d.chaughadi.map(c=>{
+    let isNow=false;
+    try{const[s,e]=c.time.split(' - ').map(parseT);const cur=now.getHours()*60+now.getMinutes();isNow=cur>=s&&cur<e}catch(ex){}
+    return `<div class="cc ${c.is_good?'g':'b'} ${isNow?'now':''} fu">
+      <div class="cc-n">${c.name_hi}</div>
+      <div class="cc-t">${c.time}</div>
+    </div>`;
+  }).join('');
+
+  /* Graha */
+  const gr=d.graha_positions||d.graha||[];
+  document.getElementById('graflex').innerHTML=gr.map(g=>`
+    <div class="gc fu">
+      <div class="gc-n">${g.planet_hi||g.planet}</div>
+      <div class="gc-r">${g.rashi_hi||g.rashi}</div>
+      <div class="gc-d">${g.degree_in_rashi}°</div>
+    </div>`).join('');
+
+  /* Right sidebar */
+  document.getElementById('rwtimings').innerHTML=`
+    <div class="rr"><span class="rr-k">Sunrise</span><span class="rr-v g">${sm.sunrise}</span></div>
+    <div class="rr"><span class="rr-k">Sunset</span><span class="rr-v gold">${sm.sunset}</span></div>
+    <div class="rr"><span class="rr-k">Solar Noon</span><span class="rr-v gold">${sm.solar_noon||'—'}</span></div>
+    <div class="rr"><span class="rr-k">Moonrise</span><span class="rr-v" style="color:var(--teal)">${sm.moonrise||'N/A'}</span></div>
+    <div class="rr"><span class="rr-k">Abhijit</span><span class="rr-v g" style="font-size:.7rem">${au.abhijit_muhurat||'—'}</span></div>
+  `;
+  document.getElementById('rwbad').innerHTML=`
+    <div class="rr"><span class="rr-k">Rahu Kalam</span><span class="rr-v b" style="font-size:.7rem">${inau.rahu_kalam}</span></div>
+    <div class="rr"><span class="rr-k">Yama</span><span class="rr-v b" style="font-size:.7rem">${inau.yama_kandam}</span></div>
+    <div class="rr"><span class="rr-k">Gulika</span><span class="rr-v b" style="font-size:.7rem">${inau.gulika_kalam}</span></div>
+    <div class="rr"><span class="rr-k">Varjyam</span><span class="rr-v b" style="font-size:.7rem">${inau.varjyam||'—'}</span></div>
+  `;
+
+  /* Upcoming sidebar */
+  const up=[
+    {dt:'Jyeshtha Ekadashi',n:'ज्येष्ठ एकादशी'},
+    {dt:'Nirjala Ekadashi',n:'निर्जला एकादशी'},
+    {dt:'Guru Purnima',n:'गुरु पूर्णिमा'},
+    {dt:'Shravan Begins',n:'श्रावण आरंभ'},
+    {dt:'Raksha Bandhan',n:'रक्षा बंधन'},
+  ];
+  document.getElementById('supcoming').innerHTML=up.map(u=>`
+    <div class="sup-item"><div class="sup-date">${u.dt}</div><div class="sup-name">${u.n}</div></div>`).join('');
+
+  renderVideos();
+  renderKatha();
+}
+
+/* ── VIDEOS ── */
+function renderVideos(){
+  // Replace YT IDs with your actual Adhyatmik Bharat YouTube video IDs
+  const vids=[
+    {id:'dQw4w9WgXcQ',title:'गुरुवार व्रत कथा — बृहस्पतिवार माहात्म्य',v:'12K'},
+    {id:'dQw4w9WgXcQ',title:'एकादशी व्रत की पूरी विधि और कथा',v:'8.5K'},
+    {id:'dQw4w9WgXcQ',title:'आज का पंचांग — शुभ मुहूर्त और राहु काल',v:'5.2K'},
+    {id:'dQw4w9WgXcQ',title:'महाशिवरात्रि — अभिषेक विधि और कथा',v:'21K'},
+    {id:'dQw4w9WgXcQ',title:'नवरात्रि — नौ देवियों की आराधना',v:'15K'},
+  ];
+  document.getElementById('reelrow').innerHTML=vids.map(v=>`
+    <div class="rcard fu" onclick="openYT('${v.id}')">
+      <div class="rthumb">
+        <img src="https://img.youtube.com/vi/${v.id}/mqdefault.jpg" loading="lazy" alt="${v.title}">
+        <div class="rplay">▶️</div>
       </div>
-    </div>` : ''}
+      <div class="rinfo">
+        <div class="rtitle">${v.title}</div>
+        <div class="rmeta">${v.v} views · आध्यात्मिक भारत</div>
+      </div>
+    </div>`).join('');
+}
+
+function openYT(id){window.open(`https://www.youtube.com/watch?v=${id}`,'_blank')}
+
+/* ── KATHA ── */
+const VM={
+  'Ekadashi':'Ekadashi','Shukla Ekadashi':'Ekadashi','Krishna Ekadashi':'Ekadashi',
+  'Pradosh Vrat':'Pradosh Vrat','Purnima Vrat':'Purnima Vrat','Amavasya':'Amavasya',
+  'Sankashti Chaturthi':'Sankashti Chaturthi','Vinayaka Chaturthi':'Sankashti Chaturthi',
+  'Somvar Vrat':'Somvar Vrat','Mangalvar Vrat':'Mangalvar Vrat','Budhvar Vrat':'Budhvar Vrat',
+  'Guruvar Vrat':'Guruvar Vrat','Shukravar Vrat':'Shukravar Vrat',
+  'Shanivar Vrat':'Shanivar Vrat','Ravivar Vrat':'Ravivar Vrat',
+  'Sashti Vrat':'Sashti Vrat','Ashtami Vrat':'Ashtami Vrat',
+  'Navami Vrat':'Navami Vrat','Dwadashi Vrat':'Dwadashi Vrat',
+};
+
+function mkKatha(id,title,deity,mah,kath,vidhi,mantra){
+  const st=(Array.isArray(vidhi)?vidhi:(vidhi?.steps||[])).map(s=>`<li>${s}</li>`).join('');
+  return `<div class="kw fu" id="${id}">
+    <div class="kw-hdr"><div class="kw-ic">🪔</div><div><div class="kw-title">${title}</div><div class="kw-deity">देवता: ${deity||'—'}</div></div></div>
+    <div class="kw-tabs">
+      <div class="ktab active" onclick="kt('${id}','m',this)">📖 महात्म्य</div>
+      <div class="ktab" onclick="kt('${id}','k',this)">📜 कथा</div>
+      <div class="ktab" onclick="kt('${id}','v',this)">🪔 विधि</div>
+      ${mantra?`<div class="ktab" onclick="kt('${id}','t',this)">🕉️ मंत्र</div>`:''}
+    </div>
+    <div class="kw-body">
+      <div id="${id}-m" class="kc active"><p class="kc-mah">${mah||'—'}</p></div>
+      <div id="${id}-k" class="kc"><p class="kc-txt">${kath||'—'}</p></div>
+      <div id="${id}-v" class="kc"><ul class="kc-steps">${st}</ul></div>
+      ${mantra?`<div id="${id}-t" class="kc"><div class="mantra-b"><div class="m-lbl">मंत्र</div><div class="m-txt">${mantra}</div></div></div>`:''}
+    </div>
   </div>`;
 }
 
-async function load() {
-  // Load all 3 JSONs in parallel
-  const [pdRes, vrRes, fsRes] = await Promise.all([
-    fetch('today_panchang.json'),
-    fetch('vrat_content.json'),
-    fetch('festival_content.json')
-  ]);
-  const d  = await pdRes.json();
-  const vc = await vrRes.json();
-  const fc = await fsRes.json();
-
-  const hc  = d.hindu_calendar;
-  const pa  = d.panch_ang;
-  const sm  = d.sun_moon;
-  const dt  = d.date;
-  const inau= d.inauspicious;
-  const au  = d.auspicious;
-
-  // Date bar
-  document.getElementById('dateMain').textContent  = `${dt.weekday_en}, ${dt.gregorian} · ${d.city}`;
-  document.getElementById('dateHindi').textContent  = `${dt.weekday_hi} · ${hc.masa_hi} ${hc.paksha_hi}`;
-  document.getElementById('vikramTag').textContent  =
-    `विक्रम सम्वत् ${hc.vikram_samvat} · ${hc.samvat_name} | शक ${hc.shaka_samvat}`;
-
-  // Vrat banner
-  const vb = document.getElementById('vratBanner');
-  if (d.vrats && d.vrats.length) {
-    const major = d.vrats.find(v=>v.type==='major') || d.vrats[0];
-    const all   = d.vrats.map(v=>v.name_hi||v.name).join(' | ');
-    vb.innerHTML = `
-      <div class="vrat-banner">
-        <div class="vrat-icon">🪔</div>
-        <div><div class="vrat-name">${major.name_hi||major.name}</div>
-        <div class="vrat-sub">आज का व्रत · ${all}</div></div>
-      </div>`;
-  }
-  if (d.festival) {
-    vb.innerHTML += `
-      <div class="vrat-banner fest-banner" style="margin-top:8px">
-        <div class="vrat-icon">🎉</div>
-        <div><div class="vrat-name">${d.festival.name_hi||d.festival.name}</div>
-        <div class="vrat-sub">आज का पर्व</div></div>
-      </div>`;
-  }
-
-  // Sun row
-  document.getElementById('sunRow').innerHTML = `
-    <div class="ss-item"><span class="ss-icon">🌅</span><div><div class="ss-label">सूर्योदय</div><div class="ss-time">${sm.sunrise}</div></div></div>
-    <div class="ss-item"><span class="ss-icon">🌇</span><div><div class="ss-label">सूर्यास्त</div><div class="ss-time">${sm.sunset}</div></div></div>
-    <div class="ss-item"><span class="ss-icon">🌙</span><div><div class="ss-label">चन्द्रोदय</div><div class="ss-time">${sm.moonrise}</div></div></div>
-    <div class="ss-item"><span class="ss-icon">🌕</span><div><div class="ss-label">चन्द्रास्त</div><div class="ss-time">${sm.moonset}</div></div></div>`;
-
-  // Panch ang
-  const ti=pa.tithi, nak=pa.nakshatra, yo=pa.yoga, k1=pa.karana1, k2=pa.karana2;
-  const items=[
-    {label:'Tithi तिथि',     hi:ti.name_hi,     en:ti.name,      sub:ti.paksha_hi},
-    {label:'Nakshatra नक्षत्र',hi:nak.name_hi,  en:nak.name,     sub:`पाद ${nak.pada} · ${nak.lord}`},
-    {label:'Yoga योग',       hi:yo.name_hi,     en:yo.name,      sub:yo.nature==='good'?'✅ शुभ':'⚠️ अशुभ'},
-    {label:'Karana 1 करण',   hi:k1?k1.name_hi:'—', en:k1?k1.name:'—', sub:k1?k1.nature:''},
-    {label:'Karana 2 करण',   hi:k2?k2.name_hi:'—', en:k2?k2.name:'—', sub:k2?k2.nature:''},
-    {label:'Var वार',        hi:dt.weekday_hi,  en:dt.weekday_en,sub:dt.day_deity_hi||dt.day_deity},
-    {label:'Sun Rashi सूर्य', hi:sm.sun_rashi_hi, en:sm.sun_rashi, sub:''},
-    {label:'Moon Rashi चंद्र',hi:sm.moon_rashi_hi,en:sm.moon_rashi,sub:''},
-  ];
-  document.getElementById('panchGrid').innerHTML = items.map(a=>`
-    <div class="anga">
-      <div class="anga-label">${a.label}</div>
-      <div class="anga-hi">${a.hi||'—'}</div>
-      <div class="anga-en">${a.en||'—'}</div>
-      ${a.sub?`<div class="anga-sub">${a.sub}</div>`:''}
-    </div>`).join('');
-
-  // Shubh
-  document.getElementById('shubhContent').innerHTML = `
-    <div class="info-row"><span class="ikey">Abhijit Muhurat</span><span class="ival good">${au.abhijit_muhurat}</span></div>
-    <div class="info-row"><span class="ikey">Amrit Kalam</span><span class="ival good">${au.amrit_kalam||'—'}</span></div>
-    <div class="info-row"><span class="ikey">Sunrise</span><span class="ival good">${sm.sunrise}</span></div>
-    <div class="info-row"><span class="ikey">Solar Noon</span><span class="ival gold">${sm.solar_noon}</span></div>`;
-
-  // Ashubh
-  const dur = inau.dur_muhurtam ? inau.dur_muhurtam.join('<br>') : '—';
-  document.getElementById('ashubhContent').innerHTML = `
-    <div class="info-row"><span class="ikey">Rahu Kalam</span><span class="ival bad">${inau.rahu_kalam}</span></div>
-    <div class="info-row"><span class="ikey">Yama Kandam</span><span class="ival bad">${inau.yama_kandam}</span></div>
-    <div class="info-row"><span class="ikey">Gulika Kalam</span><span class="ival bad">${inau.gulika_kalam}</span></div>
-    <div class="info-row"><span class="ikey">Varjyam</span><span class="ival bad">${inau.varjyam||'—'}</span></div>
-    <div class="info-row"><span class="ikey">Dur Muhurtam</span><span class="ival bad" style="font-size:.78rem;line-height:1.6">${dur}</span></div>`;
-
-  // Chaughadi
-  document.getElementById('chauGrid').innerHTML = d.chaughadi.map(c=>`
-    <div class="chau ${c.is_good?'good':'bad'}">
-      <div class="chau-name">${c.name_hi}</div>
-      <div class="chau-time">${c.time}</div>
-    </div>`).join('');
-
-  // ── VRAT KATHA — auto match ──────────────────────────────────────────────
-  const kathaEl = document.getElementById('kathaSection');
-  const vratas  = vc.vratas;
-  let kathaHTML = '';
-
-  // Map vrat names to keys in JSON
-  const VRAT_MAP = {
-    'Ekadashi': 'Ekadashi', 'Shukla Ekadashi': 'Ekadashi', 'Krishna Ekadashi': 'Ekadashi',
-    'Pradosh Vrat': 'Pradosh Vrat', 'Purnima Vrat': 'Purnima Vrat',
-    'Amavasya': 'Amavasya', 'Sankashti Chaturthi': 'Sankashti Chaturthi',
-    'Vinayaka Chaturthi': 'Sankashti Chaturthi',
-    'Somvar Vrat': 'Somvar Vrat', 'Mangalvar Vrat': 'Mangalvar Vrat',
-    'Shanivar Vrat': 'Shanivar Vrat', 'Ravivar Vrat': 'Ravivar Vrat',
-    'Sashti Vrat': 'Sashti Vrat', 'Ashtami Vrat': 'Ashtami Vrat',
-    'Navami Vrat': 'Navami Vrat', 'Dwadashi Vrat': 'Dwadashi Vrat',
-    'Guruvar Vrat': 'Guruvar Vrat',
-    'Shukravar Vrat': 'Shukravar Vrat',
-    'Budhvar Vrat': 'Budhvar Vrat',
-  };
-
-  // Only show major/medium vratas (not minor weekday unless only option)
-  const majorVrats = d.vrats.filter(v => v.type !== 'minor');
-  const showVrats = majorVrats.length > 0 ? majorVrats : [];
-
-  showVrats.forEach((v,i) => {
-    const key = VRAT_MAP[v.name_en || v.name] || v.name_en || v.name;
-    const vd  = vratas[key];
-    if (!vd) return;
-    const vidhi = vd.vidhi?.steps || [];
-    const mantra = vd.vidhi?.mantra || '';
-    kathaHTML += buildKathaCard(
-      `vrat-katha-${i}`,
-      `🪔 ${vd.name} व्रत`,
-      vd.deity,
-      vd.mahatmya,
-      vd.katha,
-      vidhi,
-      mantra
-    );
-  });
-
-  // Always show weekday vrat too
-  const wdVrat = d.vrats.find(v => v.type === 'minor');
-  if (wdVrat) {
-    const wkey = VRAT_MAP[wdVrat.name_en || wdVrat.name];
-    const wvd  = wkey ? vratas[wkey] : null;
-    if (wvd) {
-      kathaHTML += buildKathaCard(
-        `vrat-wd`,
-        `🙏 ${wvd.name} व्रत`,
-        wvd.deity,
-        wvd.mahatmya,
-        wvd.katha,
-        wvd.vidhi?.steps || [],
-        wvd.vidhi?.mantra || ''
-      );
-    }
-  }
-
-  kathaEl.innerHTML = kathaHTML || '';
-
-  // ── FESTIVAL SECTION ────────────────────────────────────────────────────
-  const festEl = document.getElementById('festivalSection');
-  if (d.festival) {
-    const fname = d.festival.name_en || d.festival.name;
-    const fd    = fc.festivals[fname];
-    if (fd) {
-      festEl.innerHTML = buildKathaCard(
-        'festival-katha',
-        `🎉 ${fd.name}`,
-        fd.deity,
-        fd.description,
-        fd.katha,
-        fd.puja_vidhi || fd.vidhi || [],
-        fd.mantra || ''
-      );
-    }
-  }
-
-  // Graha
-  const gdata = d.graha_positions || [];
-  document.getElementById('grahaGrid').innerHTML = gdata.map(g=>`
-    <div class="graha-item">
-      <div class="graha-name">${g.planet_hi||g.planet}</div>
-      <div class="graha-rashi">${g.rashi_hi||g.rashi}</div>
-      <div class="graha-deg">${g.degree_in_rashi}°</div>
-    </div>`).join('');
+function kt(id,tab,el){
+  document.querySelectorAll(`#${id} .kc`).forEach(c=>c.classList.remove('active'));
+  document.querySelectorAll(`#${id} .ktab`).forEach(t=>t.classList.remove('active'));
+  document.getElementById(`${id}-${tab}`).classList.add('active');
+  el.classList.add('active');
 }
 
-load();
+function renderKatha(){
+  if(!VC||!FC||!P)return;
+  const vr=VC.vratas;let html='';
+  const majV=P.vrats.filter(v=>v.type!=='minor');
+  majV.forEach((v,i)=>{
+    const k=VM[v.name_en||v.name]||v.name_en||v.name;
+    const vd=vr[k];if(!vd)return;
+    html+=mkKatha(`vk${i}`,`${vd.name} व्रत`,vd.deity,vd.mahatmya,vd.katha,vd.vidhi?.steps||[],vd.vidhi?.mantra||'');
+  });
+  const wd=P.vrats.find(v=>v.type==='minor');
+  if(wd){const wk=VM[wd.name_en||wd.name];const wvd=wk?vr[wk]:null;
+    if(wvd)html+=mkKatha('vkwd',`${wvd.name} व्रत`,wvd.deity,wvd.mahatmya,wvd.katha,wvd.vidhi?.steps||[],wvd.vidhi?.mantra||'');
+  }
+  const ks=document.getElementById('kathasec');
+  if(html)ks.innerHTML=`<div class="sh"><div class="sh-title">📜 व्रत कथा</div></div>${html}`;
+  if(P.festival){
+    const fn=P.festival.name_en||P.festival.name;
+    const fd=FC.festivals[fn];
+    if(fd)document.getElementById('festsec').innerHTML=
+      `<div class="sh"><div class="sh-title">🎉 आज का पर्व</div></div>`+
+      mkKatha('fk0',fd.name,fd.deity,fd.description,fd.katha,fd.puja_vidhi||fd.vidhi||[],fd.mantra||'');
+  }
+}
+
+/* ── DATE NAV ── */
+function navD(n){const d=new Date(CUR+'T00:00:00');d.setDate(d.getDate()+n);CUR=d.toISOString().slice(0,10);loadAll()}
+function goToday(){CUR=new Date().toISOString().slice(0,10);loadAll()}
+function changeCity(){CITY=document.getElementById('citysel').value;loadAll()}
+
+/* ── DATE PICKER ── */
+function dpO(){document.getElementById('dpov').classList.add('open')}
+function dpC(){document.getElementById('dpov').classList.remove('open')}
+function dpGo(){
+  const d=document.getElementById('dpD').value,m=document.getElementById('dpM').value,y=document.getElementById('dpY').value;
+  if(!d||!m||!y){alert('कृपया दिन, माह और वर्ष तीनों भरें');return}
+  CUR=`${String(y).padStart(4,'0')}-${String(m).padStart(2,'0')}-${String(d).padStart(2,'0')}`;
+  dpC();loadAll();
+}
+document.getElementById('dpov').addEventListener('click',function(e){if(e.target===this)dpC()});
+
+/* ── START ── */
+loadAll();
 </script>
 </body>
 </html>

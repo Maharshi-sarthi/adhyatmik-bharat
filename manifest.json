@@ -1,0 +1,22 @@
+{
+  "name": "आध्यात्मिक भारत",
+  "short_name": "Adhyatmik",
+  "description": "India ka sabse accurate Hindu Panchang - Tithi, Nakshatra, Muhurat, Vrat Katha",
+  "start_url": "/adhyatmik-bharat/",
+  "scope": "/adhyatmik-bharat/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1C0A00",
+  "theme_color": "#D4940A",
+  "lang": "hi",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"}
+  ],
+  "categories": ["lifestyle", "religion", "education"],
+  "screenshots": [],
+  "shortcuts": [
+    {"name": "Aaj ka Panchang", "url": "/adhyatmik-bharat/", "description": "Aaj ka pura panchang"},
+    {"name": "Vrat Katha", "url": "/adhyatmik-bharat/#vrat", "description": "Aaj ki vrat katha"}
+  ]
+}
