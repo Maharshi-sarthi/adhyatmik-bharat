@@ -3,81 +3,118 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>आध्यात्मिक भारत | Hindu Panchang Super App</title>
+    <title>आध्यात्मिक भारत | Adhyatmik Bharat Super App</title>
     <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit&family=Lora&family=DM+Mono&display=swap" rel="stylesheet">
     <style>
-        /* Exact Colors from your image_9111d5.png */
         :root {
             --bg: #050200; --bg-card: #150a05; --gold: #d4940a;
             --t1: #faf0dc; --t2: #d4b896; --saffron: #e8640c;
             --good: #4ade80; --bad: #f87171;
         }
-        body { font-family: 'Lora', serif; background: var(--bg); color: var(--t1); margin: 0; }
-        .hdr { position: fixed; top: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; z-index: 1000; border-bottom: 1px solid #331500; }
+        body { font-family: 'Lora', serif; background: var(--bg); color: var(--t1); margin: 0; overflow-x: hidden; }
+        
+        /* Layout Structure */
+        .hdr { position: fixed; top: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.95); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; z-index: 1000; border-bottom: 1px solid #331500; }
         .shell { display: flex; padding-top: 60px; min-height: 100vh; }
         
-        /* Sidebar Styles */
-        .lsb { width: 220px; background: #0a0502; border-right: 1px solid #221100; padding: 20px; }
-        .rsb { width: 280px; background: #0a0502; border-left: 1px solid #221100; padding: 20px; }
-        .main { flex: 1; padding: 20px; max-width: 800px; margin: 0 auto; }
+        /* Left Sidebar: Navigation & Upcoming */
+        .lsb { width: 240px; background: #0a0502; border-right: 1px solid #221100; padding: 20px; position: sticky; top: 60px; height: calc(100vh - 60px); overflow-y: auto; }
+        .nav-link { display: flex; align-items: center; gap: 10px; padding: 12px; color: var(--t2); text-decoration: none; border-radius: 10px; transition: 0.3s; }
+        .nav-link:hover { background: #1a0f05; color: var(--gold); }
+        
+        /* Right Sidebar: Quick Info */
+        .rsb { width: 300px; background: #0a0502; border-left: 1px solid #221100; padding: 20px; position: sticky; top: 60px; height: calc(100vh - 60px); }
+        
+        /* Main Content Area */
+        .main { flex: 1; padding: 20px; max-width: 900px; margin: 0 auto; }
 
-        /* Card Designs from Image */
+        /* Card System */
         .card { background: var(--bg-card); border-radius: 20px; border: 1px solid #331500; padding: 20px; margin-bottom: 20px; }
-        .hero-card { text-align: center; background: radial-gradient(circle at center, #261000, #150a05); }
+        .hero-card { text-align: center; background: radial-gradient(circle at center, #261000, #150a05); position: relative; }
+        
+        /* Grids */
         .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
         .pc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-        .pc-item { background: #1c0f08; padding: 12px; border-radius: 12px; border: 1px solid #3d1a00; }
+        .pc-item { background: #1c0f08; padding: 15px; border-radius: 12px; border: 1px solid #3d1a00; text-align: center; }
         
-        /* Panditai Ad Button */
-        .cta-box { background: linear-gradient(135deg, #4d1a00, #1c0a00); padding: 20px; border-radius: 25px; border: 1px solid var(--saffron); text-align: center; }
-        .btn-call { background: var(--saffron); color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; display: inline-block; margin-top: 10px; font-weight: bold; }
+        /* Reels/Video Section */
+        .reel-scroll { display: flex; gap: 15px; overflow-x: auto; padding-bottom: 10px; scrollbar-width: none; }
+        .reel-card { min-width: 160px; height: 240px; background: #1a0f05; border-radius: 15px; overflow: hidden; border: 1px solid #331500; }
+        .reel-card img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; }
+
+        /* Panditai Ad Card */
+        .cta-box { background: linear-gradient(135deg, #4d1a00, #1c0a00); padding: 25px; border-radius: 25px; border: 1px solid var(--saffron); text-align: center; position: relative; overflow: hidden; }
+        .btn-call { background: var(--saffron); color: white; padding: 12px 30px; border-radius: 12px; text-decoration: none; display: inline-block; margin-top: 15px; font-weight: bold; font-size: 1.1rem; }
         
+        /* Utilities */
         .val { color: var(--gold); font-family: 'DM Mono', monospace; }
-        .hi { font-family: 'Tiro Devanagari Sanskrit', serif; font-size: 1.1rem; }
+        .hi { font-family: 'Tiro Devanagari Sanskrit', serif; }
+        .bad { color: var(--bad); } .good { color: var(--good); }
     </style>
 </head>
 <body>
 
 <header class="hdr">
-    <div class="hi" style="color:var(--gold)">🕉️ आध्यात्मिक भारत</div>
-    <div id="ist-clock" class="val" style="background:#261000; padding:5px 15px; border-radius:10px;">00:00:00</div>
+    <div class="hi" style="color:var(--gold); font-size: 1.4rem;">🕉️ आध्यात्मिक भारत</div>
+    <div id="ist-clock" class="val" style="background:#261000; padding:8px 20px; border-radius:12px; border: 1px solid var(--gold);">00:00:00</div>
 </header>
 
 <div class="shell">
     <aside class="lsb">
-        <div class="hi" style="color:var(--t2); font-size:0.8rem; margin-bottom:15px;">आने वाले त्योहार</div>
-        <div id="fest-list"></div>
+        <nav>
+            <a href="#" class="nav-link">🏠 Home</a>
+            <a href="#" class="nav-link">📅 Panchang</a>
+            <a href="#" class="nav-link">🪔 Vrat Katha</a>
+            <a href="#" class="nav-link">⭐ Rashifal</a>
+            <a href="#" class="nav-link">🎬 Videos</a>
+        </nav>
+        <hr style="border: 0.5px solid #221100; margin: 20px 0;">
+        <div class="hi" style="color:var(--t2); font-size:0.85rem; margin-bottom:15px;">आने वाले त्योहार</div>
+        <div id="fest-list" style="font-size: 0.9rem; line-height: 2;">
+            Jyeshtha Ekadashi<br>Nirjala Ekadashi<br>Guru Purnima
+        </div>
     </aside>
 
     <main class="main">
         <div class="card hero-card">
-            <div id="greet" class="hi" style="font-size:2rem; color:var(--gold)">शुभ रात्रि</div>
-            <div id="current-date" class="val">Tuesday, 12 May 2026</div>
-            <div style="margin-top:15px;">
-                <input type="date" id="date-picker" onchange="searchDate()" style="background:#331500; color:white; border:none; padding:8px; border-radius:8px;">
+            <div id="greet" class="hi" style="font-size:2.2rem; color:var(--gold)">शुभ रात्रि</div>
+            <div id="current-date" class="val" style="font-size: 1.1rem;">-</div>
+            <div style="margin-top:20px;">
+                <input type="date" id="date-picker" onchange="searchDate()" style="background:#331500; color:white; border: 1px solid var(--gold); padding:10px; border-radius:10px; cursor: pointer;">
             </div>
         </div>
 
         <div class="grid-4" id="sun-moon-grid"></div>
 
-        <div class="cta-box">
-            <div class="hi">🙏 घर पर पूजा-पाठ करवाएं</div>
-            <div style="font-size:0.8rem; color:var(--t2); margin:10px 0;">अनुभवी पंडित जी द्वारा सभी प्रकार के संस्कार और कथाएँ।</div>
-            <a href="tel:+91XXXXXXXXXX" class="btn-call">📞 संपर्क करें</a>
+        <div id="vrat-alert" class="card" style="background: rgba(232, 100, 12, 0.1); border-color: var(--saffron); display: none;">
+            <span class="hi" id="vrat-text" style="color: var(--saffron);"></span>
         </div>
 
-        <div class="hi" style="margin:20px 0 10px; color:var(--gold)">🔱 पञ्चांग — Panch Ang</div>
+        <div class="cta-box">
+            <div class="hi" style="font-size: 1.4rem;">🙏 घर पर पूजा-पाठ करवाएं</div>
+            <div style="font-size:0.95rem; color:var(--t2); margin:12px 0;">अनुभवी पंडित जी द्वारा गृह पूजा, सत्यनारायण कथा, हवन और सभी संस्कार।</div>
+            <a href="tel:+91XXXXXXXXXX" class="btn-call">📞 अभी संपर्क करें</a>
+        </div>
+
+        <div class="hi" style="margin:30px 0 15px; color:var(--gold); font-size: 1.3rem;">🔱 पञ्चांग — Panch Ang</div>
         <div class="pc-grid" id="panchang-grid"></div>
+
+        <div class="hi" style="margin:30px 0 15px; color:var(--gold);">🎬 आध्यात्मिक वीडियो</div>
+        <div class="reel-scroll">
+            <div class="reel-card"><img src="https://via.placeholder.com/160x240/1a0f05/gold?text=Vrat+Katha"></div>
+            <div class="reel-card"><img src="https://via.placeholder.com/160x240/1a0f05/gold?text=Aarti"></div>
+            <div class="reel-card"><img src="https://via.placeholder.com/160x240/1a0f05/gold?text=Darshan"></div>
+        </div>
     </main>
 
     <aside class="rsb">
         <div class="card">
-            <div class="hi" style="font-size:0.9rem; margin-bottom:10px;">⏰ आज का समय</div>
-            <div id="auspicious-times"></div>
+            <div class="hi" style="font-size:1rem; margin-bottom:15px; border-bottom: 1px solid #331500; padding-bottom: 5px;">⏰ आज का समय</div>
+            <div id="auspicious-times" style="font-size: 0.9rem;"></div>
         </div>
-        <div class="card">
-            <div class="hi" style="font-size:0.9rem; color:var(--bad); margin-bottom:10px;">🌙 अशुभ काल</div>
-            <div id="inauspicious-times"></div>
+        <div class="card" style="border-color: #401000;">
+            <div class="hi" style="font-size:1rem; color:var(--bad); margin-bottom:15px; border-bottom: 1px solid #401000; padding-bottom: 5px;">🌙 अशुभ काल</div>
+            <div id="inauspicious-times" style="font-size: 0.9rem;"></div>
         </div>
     </aside>
 </div>
@@ -85,60 +122,64 @@
 <script>
 let P_DATA = null;
 
-// Clock Logic
 function updateClock() {
     const now = new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
-    const time = new Date(now).toLocaleTimeString('en-GB');
-    document.getElementById('ist-clock').innerText = time;
+    document.getElementById('ist-clock').innerText = new Date(now).toLocaleTimeString('en-GB');
 }
 setInterval(updateClock, 1000);
 
-// Load Data From your JSON files
 async function loadPanchang() {
     try {
         const response = await fetch('today_panchang.json?v=' + Date.now());
         P_DATA = await response.json();
         render();
     } catch(e) {
-        document.querySelector('.main').innerHTML += "<p style='color:red'>Data load nahi ho raha. GitHub Actions check karein.</p>";
+        console.error("Data loading failed");
     }
 }
 
 function render() {
     const d = P_DATA;
-    // Hero Section
     document.getElementById('current-date').innerText = d.date.gregorian;
     
     // Sun Moon Grid
     document.getElementById('sun-moon-grid').innerHTML = `
-        <div class="pc-item">🌅<br>सूर्योदय<br><span class="val">${d.sun_moon.sunrise}</span></div>
-        <div class="pc-item">🌇<br>सूर्यास्त<br><span class="val">${d.sun_moon.sunset}</span></div>
-        <div class="pc-item">🌙<br>चन्द्रोदय<br><span class="val">${d.sun_moon.moonrise}</span></div>
-        <div class="pc-item">☀️<br>मध्याह्न<br><span class="val">${d.sun_moon.solar_noon}</span></div>
+        <div class="pc-item"><small>सूर्योदय</small><br><span class="val">${d.sun_moon.sunrise}</span></div>
+        <div class="pc-item"><small>सूर्यास्त</small><br><span class="val">${d.sun_moon.sunset}</span></div>
+        <div class="pc-item"><small>चन्द्रोदय</small><br><span class="val">${d.sun_moon.moonrise}</span></div>
+        <div class="pc-item"><small>मध्याह्न</small><br><span class="val">${d.sun_moon.solar_noon}</span></div>
     `;
+
+    // Vrat Check
+    if(d.vrats && d.vrats.length > 0) {
+        document.getElementById('vrat-alert').style.display = 'block';
+        document.getElementById('vrat-text').innerText = "🪔 आज का व्रत: " + d.vrats[0].name_hi;
+    }
 
     // Panchang Grid
     const pa = d.panch_ang;
     document.getElementById('panchang-grid').innerHTML = `
-        <div class="pc-item"><small>TITHI</small><br><b class="hi">${pa.tithi.name_hi}</b><br><span class="val">${pa.tithi.paksha_hi}</span></div>
-        <div class="pc-item"><small>NAKSHATRA</small><br><b class="hi">${pa.nakshatra.name_hi}</b><br><span class="val">पाद ${pa.nakshatra.pada}</span></div>
-        <div class="pc-item"><small>YOGA</small><br><b class="hi">${pa.yoga.name_hi}</b><br><span class="val">${pa.yoga.nature}</span></div>
-        <div class="pc-item"><small>VAR</small><br><b class="hi">${d.date.weekday_hi}</b><br><span class="val">${d.date.day_deity_hi}</span></div>
+        <div class="pc-item"><small>TITHI तिथि</small><br><b class="hi">${pa.tithi.name_hi}</b><br><span class="val">${pa.tithi.paksha_hi}</span></div>
+        <div class="pc-item"><small>NAKSHATRA नक्षत्र</small><br><b class="hi">${pa.nakshatra.name_hi}</b><br><span class="val">पाद ${pa.nakshatra.pada}</span></div>
+        <div class="pc-item"><small>YOGA योग</small><br><b class="hi">${pa.yoga.name_hi}</b><br><span class="val">${pa.yoga.nature}</span></div>
+        <div class="pc-item"><small>VAR वार</small><br><b class="hi">${d.date.weekday_hi}</b><br><span class="val">${d.date.day_deity_hi || 'मंगल'}</span></div>
     `;
 
     // Auspicious/Inauspicious
     document.getElementById('auspicious-times').innerHTML = `
-        <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin:5px 0;"><span>Abhijit</span><span class="val">${d.auspicious.abhijit_muhurat}</span></div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:10px;"><span>Abhijit</span><span class="val">${d.auspicious.abhijit_muhurat}</span></div>
+        <div style="display:flex; justify-content:space-between;"><span>Amrit Kalam</span><span class="val">${d.auspicious.amrit_kalam || '-'}</span></div>
     `;
     document.getElementById('inauspicious-times').innerHTML = `
-        <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin:5px 0;"><span>Rahu Kalam</span><span class="val" style="color:var(--bad)">${d.inauspicious.rahu_kalam}</span></div>
+        <div style="display:flex; justify-content:space-between; margin-bottom:10px;"><span>Rahu Kalam</span><span class="val bad">${d.inauspicious.rahu_kalam}</span></div>
+        <div style="display:flex; justify-content:space-between;"><span>Yama Kandam</span><span class="val bad">${d.inauspicious.yama_kandam}</span></div>
     `;
 }
 
 function searchDate() {
     const picked = document.getElementById('date-picker').value;
-    alert("Universal calculation engine active: Requesting data for " + picked);
-    // Note: User can now use GitHub manual trigger for specific dates as we discussed.
+    // Manual trigger call can be linked here
+    window.location.href = `https://github.com/maharshi-shukla/adhyatmik-bharat/actions`; 
 }
 
 loadPanchang();
