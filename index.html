@@ -5,130 +5,114 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>आध्यात्मिक भारत | Adhyatmik Bharat Super App</title>
     <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit&family=Lora&family=DM+Mono&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/astronomia@3.1.0/lib/index.js"></script>
     <style>
         :root {
             --bg: #050200; --bg-card: #150a05; --gold: #d4940a;
             --t1: #faf0dc; --t2: #d4b896; --saffron: #e8640c;
             --good: #4ade80; --bad: #f87171;
         }
-        body { font-family: 'Lora', serif; background: var(--bg); color: var(--t1); margin: 0; overflow-x: hidden; }
+        body { font-family: 'Lora', serif; background: var(--bg); color: var(--t1); margin: 0; }
         .hdr { position: fixed; top: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.95); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; z-index: 1000; border-bottom: 1px solid #331500; }
         .shell { display: flex; padding-top: 60px; min-height: 100vh; }
-        .lsb { width: 240px; background: #0a0502; border-right: 1px solid #221100; padding: 20px; position: sticky; top: 60px; height: calc(100vh - 60px); }
-        .rsb { width: 300px; background: #0a0502; border-left: 1px solid #221100; padding: 20px; position: sticky; top: 60px; height: calc(100vh - 60px); }
-        .main { flex: 1; padding: 20px; max-width: 900px; margin: 0 auto; }
+        .lsb, .rsb { width: 250px; background: #0a0502; padding: 20px; }
+        .main { flex: 1; padding: 20px; max-width: 800px; margin: 0 auto; }
         .card { background: var(--bg-card); border-radius: 20px; border: 1px solid #331500; padding: 20px; margin-bottom: 20px; }
         .hero-card { text-align: center; background: radial-gradient(circle at center, #261000, #150a05); }
-        .grid-4, .pc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
-        .pc-item { background: #1c0f08; padding: 15px; border-radius: 12px; border: 1px solid #3d1a00; text-align: center; }
-        .cta-box { background: linear-gradient(135deg, #4d1a00, #1c0a00); padding: 25px; border-radius: 25px; border: 1px solid var(--saffron); text-align: center; }
-        .btn-call { background: var(--saffron); color: white; padding: 12px 30px; border-radius: 12px; text-decoration: none; display: inline-block; margin-top: 15px; font-weight: bold; }
+        .pc-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+        .pc-item { background: #1c0f08; padding: 15px; border-radius: 12px; border: 1px solid #3d1a00; }
+        .cta-box { background: linear-gradient(135deg, #4d1a00, #1c0a00); padding: 20px; border-radius: 20px; border: 1px solid var(--saffron); text-align: center; }
+        .btn-call { background: var(--saffron); color: white; padding: 10px 25px; border-radius: 10px; text-decoration: none; display: inline-block; margin-top: 10px; font-weight: bold; }
         .val { color: var(--gold); font-family: 'DM Mono', monospace; }
         .hi { font-family: 'Tiro Devanagari Sanskrit', serif; }
-        .bad { color: var(--bad); } .good { color: var(--good); }
     </style>
 </head>
 <body>
 
 <header class="hdr">
-    <div class="hi" style="color:var(--gold); font-size: 1.4rem;">🕉️ आध्यात्मिक भारत</div>
-    <div id="ist-clock" class="val" style="background:#261000; padding:8px 20px; border-radius:12px; border: 1px solid var(--gold);">00:00:00</div>
+    <div class="hi" style="color:var(--gold); font-size: 1.3rem;">🕉️ आध्यात्मिक भारत</div>
+    <div id="ist-clock" class="val">00:00:00</div>
 </header>
 
 <div class="shell">
     <aside class="lsb">
-        <div class="hi" style="color:var(--t2); font-size:0.85rem; margin-bottom:15px;">आने वाले त्योहार</div>
-        <div id="fest-list" style="font-size: 0.9rem; line-height: 2;">
-            Jyeshtha Ekadashi<br>Nirjala Ekadashi<br>Guru Purnima
-        </div>
+        <div class="hi" style="color:var(--t2);">आने वाले त्योहार</div>
+        <div id="fest-list" style="margin-top:10px; font-size:0.9rem;">लोड हो रहा है...</div>
     </aside>
 
     <main class="main">
         <div class="card hero-card">
-            <div id="greet" class="hi" style="font-size:2.2rem; color:var(--gold)">शुभ प्रभात</div>
-            <div id="current-date" class="val" style="font-size: 1.1rem;">-</div>
-            <div style="margin-top:20px;">
-                <input type="date" id="date-picker" onchange="performDynamicCalc()" style="background:#331500; color:white; border: 1px solid var(--gold); padding:10px; border-radius:10px; cursor: pointer;">
+            <div id="greet" class="hi" style="font-size:2rem; color:var(--gold)">शुभ रात्रि</div>
+            <div id="current-date" class="val">-</div>
+            <div style="margin-top:15px;">
+                <input type="date" id="date-picker" onchange="updateView()" style="background:#331500; color:white; border:1px solid var(--gold); padding:8px; border-radius:8px;">
             </div>
         </div>
 
-        <div class="grid-4" id="sun-moon-grid">
-            <div class="pc-item"><small>सूर्योदय</small><br><span class="val" id="sunrise">-</span></div>
-            <div class="pc-item"><small>सूर्यास्त</small><br><span class="val" id="sunset">-</span></div>
-            <div class="pc-item"><small>चन्द्रोदय</small><br><span class="val" id="moonrise">-</span></div>
-            <div class="pc-item"><small>मध्याह्न</small><br><span class="val" id="noon">-</span></div>
-        </div>
-
         <div class="cta-box">
-            <div class="hi" style="font-size: 1.4rem;">🙏 घर पर पूजा-पाठ करवाएं</div>
-            <div style="font-size:0.95rem; color:var(--t2); margin:12px 0;">अनुभवी पंडित जी द्वारा गृह पूजा, सत्यनारायण कथा, हवन और सभी संस्कार।</div>
-            <a href="tel:+91XXXXXXXXXX" class="btn-call">📞 अभी संपर्क करें</a>
+            <div class="hi">🙏 घर पर पूजा-पाठ करवाएं</div>
+            <a href="tel:+91XXXXXXXXXX" class="btn-call">📞 संपर्क करें</a>
         </div>
 
-        <div class="hi" style="margin:30px 0 15px; color:var(--gold); font-size: 1.3rem;">🔱 पञ्चांग — Panch Ang</div>
+        <div class="hi" style="margin:20px 0 10px; color:var(--gold)">🔱 पञ्चांग — Panch Ang</div>
         <div class="pc-grid" id="panchang-grid">
-            <div class="pc-item"><small>TITHI तिथि</small><br><b class="hi" id="tithi-name">-</b></div>
-            <div class="pc-item"><small>NAKSHATRA नक्षत्र</small><br><b class="hi" id="nak-name">-</b></div>
-            <div class="pc-item"><small>YOGA योग</small><br><b class="hi" id="yoga-name">-</b></div>
-            <div class="pc-item"><small>VAR वार</small><br><b class="hi" id="var-name">-</b></div>
+            <div class="pc-item">Tithi तिथि<br><span id="tithi" class="val">-</span></div>
+            <div class="pc-item">Nakshatra नक्षत्र<br><span id="nak" class="val">-</span></div>
+            <div class="pc-item">Sunrise सूर्योदय<br><span id="sr" class="val">-</span></div>
+            <div class="pc-item">Sunset सूर्यास्त<br><span id="ss" class="val">-</span></div>
         </div>
     </main>
 
     <aside class="rsb">
         <div class="card">
-            <div class="hi" style="font-size:1rem; margin-bottom:15px; border-bottom: 1px solid #331500; padding-bottom: 5px;">⏰ आज का समय</div>
-            <div id="auspicious-times">Abhijit: <span class="val" id="abhijit">-</span></div>
-        </div>
-        <div class="card" style="border-color: #401000;">
-            <div class="hi" style="font-size:1rem; color:var(--bad); margin-bottom:15px; border-bottom: 1px solid #401000; padding-bottom: 5px;">🌙 अशुभ काल</div>
-            <div id="inauspicious-times">Rahu: <span class="val bad" id="rahu">-</span></div>
+            <div class="hi" style="font-size:0.9rem;">⏰ आज का समय</div>
+            <div id="abhijit" class="val" style="margin-top:10px;">-</div>
         </div>
     </aside>
 </div>
 
 <script>
-// Logic to handle Real-time Calculation when date changes
-async function performDynamicCalc() {
-    const picked = document.getElementById('date-picker').value;
-    if(!picked) return;
-    
-    // Simulate Fetch for demonstration, in real app, call a lightweight JS ephemeris
-    document.getElementById('current-date').innerText = new Date(picked).toDateString();
-    
-    // This is where you connect to a real JS Panchang Engine
-    // For now, we update UI placeholders to show activity
-    document.getElementById('sunrise').innerText = "05:40 AM"; // Logic to vary by date
-    document.getElementById('sunset').innerText = "07:05 PM";
-    document.getElementById('tithi-name').innerText = "Dynamic Tithi";
-    
-    console.log("Date changed to: " + picked);
-}
+let P_DATA = null;
 
-// Clock IST
+// Clock
 setInterval(() => {
     const now = new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
     document.getElementById('ist-clock').innerText = new Date(now).toLocaleTimeString('en-GB');
 }, 1000);
 
-// Load initial today's data
-async function loadInitial() {
+async function loadData() {
     try {
+        // Fetch current day data
         const r = await fetch('today_panchang.json?v=' + Date.now());
-        const d = await r.json();
-        // Bind JSON to UI
-        document.getElementById('current-date').innerText = d.date.gregorian;
-        document.getElementById('sunrise').innerText = d.sun_moon.sunrise;
-        document.getElementById('sunset').innerText = d.sun_moon.sunset;
-        document.getElementById('tithi-name').innerText = d.panch_ang.tithi.name_hi;
-        document.getElementById('nak-name').innerText = d.panch_ang.nakshatra.name_hi;
-        document.getElementById('yoga-name').innerText = d.panch_ang.yoga.name_hi;
-        document.getElementById('var-name').innerText = d.date.weekday_hi;
-        document.getElementById('rahu').innerText = d.inauspicious.rahu_kalam;
-        document.getElementById('abhijit').innerText = d.auspicious.abhijit_muhurat;
-    } catch(e) { console.log("Init failed, use date picker."); }
+        P_DATA = await r.json();
+        render(P_DATA);
+    } catch(e) {
+        console.log("No daily file yet.");
+    }
 }
-loadInitial();
+
+function render(d) {
+    document.getElementById('current-date').innerText = d.date.gregorian;
+    document.getElementById('tithi').innerText = d.panch_ang.tithi.name_hi;
+    document.getElementById('nak').innerText = d.panch_ang.nakshatra.name_hi;
+    document.getElementById('sr').innerText = d.sun_moon.sunrise;
+    document.getElementById('ss').innerText = d.sun_moon.sunset;
+    document.getElementById('abhijit').innerText = "Abhijit: " + d.auspicious.abhijit_muhurat;
+}
+
+// 404 Prevention: Date badalne par sirf UI badlo, page redirect mat karo
+function updateView() {
+    const picked = document.getElementById('date-picker').value;
+    if(!picked) return;
+    
+    // Yahan hum user ko batayenge ki naya data calculate ho raha hai
+    document.getElementById('greet').innerText = "तिथि खोजी जा रही है...";
+    document.getElementById('current-date').innerText = picked;
+    
+    // NOTE: Real calculation engine ko yahan call karein
+    console.log("Searching data for: " + picked);
+}
+
+loadData();
 </script>
 </body>
 </html>
