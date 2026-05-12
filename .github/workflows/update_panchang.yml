@@ -2,6 +2,7 @@ name: Daily Panchang Update
 
 on:
   schedule:
+    # 18:30 UTC = 00:00 AM IST (India Time)
     - cron: '30 18 * * *'
   workflow_dispatch:
 
@@ -24,7 +25,7 @@ jobs:
       - name: Install dependencies
         run: |
           pip install --upgrade pip
-          pip install pyswisseph astral
+          pip install pyswisseph astral pytz
 
       - name: Generate panchang
         run: python -X utf8 panchang_engine.py > today_panchang.json
@@ -34,5 +35,5 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add today_panchang.json
-          git diff --staged --quiet || git commit -m "Panchang update: $(date '+%d %b %Y')"
-          git push
+          # Is line ko dhyan se dekhiye, ye check karti hai ki kya file badli hai
+          git diff --staged --quiet || (git commit -m "Panchang update: $(date '+%d %b %Y')" && git push)
