@@ -2,14 +2,8 @@ name: Daily Panchang Update
 
 on:
   schedule:
-    # 18:35 UTC = 00:05 AM IST (India Time)
-    - cron: '35 18 * * *'
+    - cron: '30 18 * * *'  # 12:00 AM IST
   workflow_dispatch:
-    inputs:
-      target_date:
-        description: 'Panchang Date (YYYY-MM-DD)'
-        required: false
-        default: ''
 
 permissions:
   contents: write
@@ -17,34 +11,24 @@ permissions:
 jobs:
   update-panchang:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Setup Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
           python-version: '3.11'
 
       - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install pyswisseph astral pytz
+        run: pip install pyswisseph astral pytz
 
       - name: Generate panchang
-        run: |
-          # Agar manual date di hai toh wo use hogi, warna aaj ki IST date
-          TARGET_DATE="${{ github.event.inputs.target_date }}"
-          if [ -z "$TARGET_DATE" ]; then
-            python -X utf8 panchang_engine.py > today_panchang.json
-          else
-            python -X utf8 panchang_engine.py "$TARGET_DATE" > today_panchang.json
-          fi
+        run: python -X utf8 panchang_engine.py > today_panchang.json
 
       - name: Commit and push
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "Adhyatmik Bharat Bot"
+          git config user.email "bot@adhyatmikbharat.com"
           git add today_panchang.json
-          git diff --staged --quiet || (git commit -m "Panchang update: $(date '+%d %b %Y')" && git push)
+          git diff --staged --quiet || (git commit -m "Auto update: $(date '+%d %b %Y')" && git push)
