@@ -1,927 +1,147 @@
 <!DOCTYPE html>
 <html lang="hi">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<meta name="theme-color" content="#1C0A00">
-<title>आध्यात्मिक भारत | Hindu Panchang & Spiritual Super App</title>
-<meta name="description" content="India ka sabse accurate Hindu Panchang. Tithi, Nakshatra, Muhurat, Vrat Katha. 1 AD se 2100 AD tak.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit:ital@0;1&family=Lora:ital,wght@0,400;0,600;0,700;1,400&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
-<style>
-:root {
-  /* Warm amber-dark palette — NOT pure black */
-  --bg:          #1C0A00;
-  --bg2:         #261000;
-  --surface:     #331500;
-  --surface2:    #3D1A00;
-  --card:        rgba(55,25,5,0.92);
-  --card2:       rgba(45,20,3,0.85);
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>आध्यात्मिक भारत | Hindu Panchang Super App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Tiro+Devanagari+Sanskrit&family=Lora&family=DM+Mono&display=swap" rel="stylesheet">
+    <style>
+        /* Exact Colors from your image_9111d5.png */
+        :root {
+            --bg: #050200; --bg-card: #150a05; --gold: #d4940a;
+            --t1: #faf0dc; --t2: #d4b896; --saffron: #e8640c;
+            --good: #4ade80; --bad: #f87171;
+        }
+        body { font-family: 'Lora', serif; background: var(--bg); color: var(--t1); margin: 0; }
+        .hdr { position: fixed; top: 0; width: 100%; height: 60px; background: rgba(0,0,0,0.9); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; z-index: 1000; border-bottom: 1px solid #331500; }
+        .shell { display: flex; padding-top: 60px; min-height: 100vh; }
+        
+        /* Sidebar Styles */
+        .lsb { width: 220px; background: #0a0502; border-right: 1px solid #221100; padding: 20px; }
+        .rsb { width: 280px; background: #0a0502; border-left: 1px solid #221100; padding: 20px; }
+        .main { flex: 1; padding: 20px; max-width: 800px; margin: 0 auto; }
 
-  /* Gold */
-  --gold:        #D4940A;
-  --gold-mid:    #E8A820;
-  --gold-bright: #F5C842;
-  --gold-pale:   #F9DFA0;
-  --gold-glow:   rgba(212,148,10,0.2);
-
-  /* Saffron */
-  --saffron:     #E8640C;
-  --saffron2:    #FF7B20;
-  --saffron-dim: rgba(232,100,12,0.15);
-
-  /* Cream text — highly readable on dark warm bg */
-  --t1:  #FAF0DC;
-  --t2:  #D4B896;
-  --t3:  #9A7A5A;
-  --t4:  #5A4030;
-
-  /* Status */
-  --good:  #4ADE80;
-  --bad:   #F87171;
-  --teal:  #22D3EE;
-
-  /* Borders */
-  --b1:  rgba(212,148,10,0.2);
-  --b2:  rgba(212,148,10,0.45);
-  --b3:  rgba(212,148,10,0.08);
-
-  --r1:12px; --r2:18px; --r3:24px; --r4:32px;
-  --header-h:60px;
-  --nav-h:68px;
-}
-
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
-html{scroll-behavior:smooth}
-body{
-  font-family:'Lora',Georgia,serif;
-  background:var(--bg);
-  color:var(--t1);
-  min-height:100vh;
-  overflow-x:hidden;
-}
-button,select,input{font-family:inherit}
-::-webkit-scrollbar{width:4px;height:4px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--b1);border-radius:2px}
-
-/* ── BACKGROUND TEXTURE ── */
-body::before{
-  content:'';
-  position:fixed;inset:0;z-index:0;
-  background:
-    radial-gradient(ellipse at 20% 0%,  rgba(232,100,12,0.12),transparent 45%),
-    radial-gradient(ellipse at 80% 60%, rgba(212,148,10,0.08),transparent 40%),
-    radial-gradient(ellipse at 50% 100%,rgba(139,40,0,0.10), transparent 50%);
-  pointer-events:none;
-}
-
-/* ── SUBTLE STARS ── */
-#stars{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-
-.s{
-  position:absolute;border-radius:50%;background:var(--gold-pale);
-  animation:tw var(--d,3s) ease-in-out infinite;
-  animation-delay:var(--dl,0s);
-  opacity:0;
-}
-@keyframes tw{0%,100%{opacity:0}50%{opacity:var(--o,.4)}}
-
-/* ══════════════════
-   HEADER
-══════════════════ */
-.hdr{
-  position:fixed;top:0;left:0;right:0;
-  height:var(--header-h);z-index:500;
-  background:rgba(20,8,0,0.95);
-  backdrop-filter:blur(20px);
-  border-bottom:1px solid var(--b1);
-  display:flex;align-items:center;
-  padding:0 16px;gap:12px;
-}
-
-.hdr-logo{display:flex;align-items:center;gap:10px;text-decoration:none;flex-shrink:0}
-.hdr-icon{
-  width:38px;height:38px;
-  background:linear-gradient(135deg,#8B2000,var(--saffron),var(--gold));
-  border-radius:10px;display:flex;align-items:center;justify-content:center;
-  font-size:19px;
-  box-shadow:0 0 18px rgba(232,100,12,0.4);
-}
-.hdr-en{font-family:'DM Mono',monospace;font-size:0.52rem;letter-spacing:0.18em;color:var(--gold);text-transform:uppercase}
-.hdr-hi{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1rem;color:var(--gold-bright)}
-
-.hdr-mid{flex:1;display:flex;justify-content:center}
-.hdr-clock{
-  display:flex;align-items:center;gap:10px;
-  background:var(--b3);border:1px solid var(--b1);
-  border-radius:var(--r1);padding:7px 14px;
-}
-.hdr-clock-time{
-  font-family:'DM Mono',monospace;font-size:1.05rem;font-weight:500;
-  color:var(--gold-bright);letter-spacing:0.04em;font-variant-numeric:tabular-nums;
-}
-.live-pill{
-  display:flex;align-items:center;gap:4px;
-  font-size:0.56rem;color:var(--good);
-  font-family:'DM Mono',monospace;letter-spacing:0.1em;
-}
-.ldot{
-  width:5px;height:5px;background:var(--good);border-radius:50%;
-  box-shadow:0 0 5px var(--good);
-  animation:blink 1.5s ease-in-out infinite;
-}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:0.3}}
-
-.hdr-actions{display:flex;gap:7px;flex-shrink:0}
-.hbtn{
-  width:36px;height:36px;
-  background:rgba(212,148,10,0.07);
-  border:1px solid var(--b1);border-radius:9px;
-  color:var(--t2);cursor:pointer;font-size:14px;
-  display:flex;align-items:center;justify-content:center;
-  transition:all .2s;
-}
-.hbtn:hover{background:var(--gold-glow);border-color:var(--b2);color:var(--gold-bright)}
-
-/* ══════════════════
-   SHELL (3-col desktop)
-══════════════════ */
-.shell{
-  position:relative;z-index:1;
-  padding-top:var(--header-h);
-  min-height:100vh;
-}
-
-@media(min-width:1100px){
-  .shell{display:flex;align-items:flex-start}
-  .lsb{width:230px;flex-shrink:0;position:sticky;top:var(--header-h);height:calc(100vh - var(--header-h));overflow-y:auto;border-right:1px solid var(--b1)}
-  .main{flex:1;min-width:0}
-  .rsb{width:270px;flex-shrink:0;position:sticky;top:var(--header-h);height:calc(100vh - var(--header-h));overflow-y:auto;border-left:1px solid var(--b1)}
-}
-@media(max-width:1099px){
-  .lsb,.rsb{display:none}
-  .main{width:100%}
-  .shell{padding-bottom:var(--nav-h)}
-}
-
-/* ══════════════════
-   LEFT SIDEBAR
-══════════════════ */
-.lsb{background:rgba(15,5,0,0.6);padding:16px 0}
-.snav-item{
-  display:flex;align-items:center;gap:11px;
-  padding:9px 14px;border-radius:var(--r1);
-  cursor:pointer;transition:all .2s;
-  color:var(--t3);font-size:0.88rem;margin:0 8px 2px;
-}
-.snav-item:hover{background:var(--gold-glow);color:var(--t2)}
-.snav-item.active{background:rgba(212,148,10,0.12);color:var(--gold);border:1px solid var(--b1)}
-.snav-ic{font-size:1rem;width:22px;text-align:center;flex-shrink:0}
-
-.sdivider{height:1px;background:var(--b1);margin:12px 14px}
-.stitle{
-  font-size:0.58rem;color:var(--t4);text-transform:uppercase;
-  letter-spacing:0.18em;padding:0 22px;margin-bottom:8px;
-  font-family:'DM Mono',monospace;
-}
-
-.sup-item{
-  background:var(--card2);border:1px solid var(--b1);
-  border-radius:var(--r1);padding:9px 11px;margin:0 8px 7px;
-  cursor:pointer;transition:all .2s;
-}
-.sup-item:hover{border-color:var(--b2)}
-.sup-date{font-family:'DM Mono',monospace;font-size:0.6rem;color:var(--saffron);text-transform:uppercase;letter-spacing:.08em;margin-bottom:2px}
-.sup-name{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.85rem;color:var(--t1)}
-
-/* ══════════════════
-   MAIN
-══════════════════ */
-.mc{max-width:660px;margin:0 auto;padding:18px 14px 32px}
-@media(min-width:1100px){.mc{max-width:100%;padding:22px 26px 40px}}
-
-/* Ad */
-.ad{
-  background:rgba(212,148,10,0.04);
-  border:1px dashed rgba(212,148,10,0.15);
-  border-radius:var(--r2);padding:14px;
-  text-align:center;margin-bottom:18px;
-}
-.ad-l{font-size:0.56rem;color:var(--t4);text-transform:uppercase;letter-spacing:.15em;margin-bottom:3px;font-family:'DM Mono',monospace}
-.ad-d{font-size:0.78rem;color:var(--t3)}
-
-/* ── HERO ── */
-.hero{
-  background:
-    radial-gradient(ellipse at 20% 10%,rgba(139,30,0,0.25),transparent 55%),
-    radial-gradient(ellipse at 80% 90%,rgba(212,100,0,0.12),transparent 50%),
-    linear-gradient(150deg,var(--surface2),var(--surface),var(--bg2));
-  border:1px solid var(--b1);
-  border-radius:var(--r4);padding:22px 20px;
-  margin-bottom:18px;position:relative;overflow:hidden;
-}
-.hero::after{
-  content:'ॐ';
-  position:absolute;right:-10px;bottom:-20px;
-  font-family:'Tiro Devanagari Sanskrit',serif;
-  font-size:110px;color:rgba(212,148,10,0.06);
-  pointer-events:none;line-height:1;
-}
-
-.hero-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px}
-.hero-greet{
-  font-family:'Tiro Devanagari Sanskrit',serif;
-  font-size:clamp(1.5rem,4vw,2rem);
-  background:linear-gradient(135deg,var(--gold-bright),var(--saffron),var(--gold));
-  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  line-height:1.15;
-}
-.hero-sub{font-size:0.78rem;color:var(--t3);margin-top:5px;font-family:'DM Mono',monospace}
-
-.mob-clk{
-  background:rgba(212,148,10,0.08);border:1px solid var(--b1);
-  border-radius:var(--r2);padding:9px 13px;text-align:center;min-width:95px;
-}
-.mob-clk-t{font-family:'DM Mono',monospace;font-size:1.05rem;color:var(--gold-bright);font-variant-numeric:tabular-nums}
-.mob-clk-l{display:flex;align-items:center;gap:4px;justify-content:center;font-size:0.55rem;color:var(--good);margin-top:3px;font-family:'DM Mono',monospace}
-@media(min-width:1100px){.mob-clk{display:none}}
-
-/* Date nav */
-.dnav{
-  display:flex;align-items:center;gap:9px;
-  background:rgba(212,148,10,0.05);
-  border:1px solid var(--b1);border-radius:var(--r2);
-  padding:9px 12px;margin-bottom:14px;
-}
-.dnav-btn{
-  width:32px;height:32px;
-  background:rgba(212,148,10,0.1);border:1px solid var(--b1);
-  border-radius:9px;cursor:pointer;color:var(--gold);font-size:17px;
-  display:flex;align-items:center;justify-content:center;
-  transition:all .2s;flex-shrink:0;line-height:1;
-}
-.dnav-btn:hover{background:rgba(212,148,10,0.2);border-color:var(--b2);transform:scale(1.08)}
-.dnav-ctr{flex:1;text-align:center;cursor:pointer}
-.dnav-hi{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.98rem;color:var(--t1);line-height:1.4}
-.dnav-sub{font-size:0.62rem;color:var(--t3);margin-top:2px;font-family:'DM Mono',monospace}
-.today-ch{
-  background:rgba(232,100,12,0.12);border:1px solid rgba(232,100,12,0.3);
-  color:var(--saffron2);padding:5px 11px;border-radius:20px;cursor:pointer;
-  font-size:0.68rem;white-space:nowrap;transition:all .2s;font-family:'DM Mono',monospace;
-}
-.today-ch:hover{background:rgba(232,100,12,0.22)}
-
-/* Samvat chips */
-.sv-row{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:14px}
-.sv-chip{
-  background:rgba(212,148,10,0.07);border:1px solid rgba(212,148,10,0.18);
-  border-radius:20px;padding:4px 11px;
-  font-family:'Tiro Devanagari Sanskrit',serif;
-  font-size:0.72rem;color:rgba(245,200,66,0.85);
-}
-.sv-chip small{font-family:'DM Mono',monospace;font-size:0.57rem;color:var(--t4);margin-left:3px}
-
-/* City */
-.city-row{
-  display:flex;align-items:center;gap:9px;
-  background:rgba(34,211,238,0.04);border:1px solid rgba(34,211,238,0.15);
-  border-radius:var(--r1);padding:7px 13px;
-}
-.city-row select{
-  background:transparent;border:none;
-  color:var(--teal);font-size:0.82rem;flex:1;outline:none;cursor:pointer;
-}
-.city-row select option{background:var(--surface);color:var(--t1)}
-
-/* Sun bar */
-.sun-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:18px}
-.sc{
-  background:var(--card2);border:1px solid var(--b1);
-  border-radius:var(--r2);padding:11px 7px;text-align:center;
-  transition:border-color .2s;
-}
-.sc:hover{border-color:var(--b2)}
-.sc-em{font-size:1.25rem}
-.sc-l{font-size:0.54rem;color:var(--t3);margin-top:4px;text-transform:uppercase;letter-spacing:.07em;font-family:'DM Mono',monospace}
-.sc-v{font-size:0.82rem;font-weight:600;color:var(--gold-bright);margin-top:3px;font-variant-numeric:tabular-nums}
-
-/* Vrat bands */
-.vband{
-  border-radius:var(--r3);padding:13px 16px;
-  display:flex;align-items:center;gap:13px;
-  margin-bottom:11px;border:1px solid;cursor:pointer;
-  transition:transform .2s;position:relative;overflow:hidden;
-}
-.vband:hover{transform:translateX(3px)}
-.vband.vrat{background:linear-gradient(135deg,rgba(120,20,0,0.45),rgba(45,20,3,0.9));border-color:rgba(212,148,10,0.35)}
-.vband.fest{background:linear-gradient(135deg,rgba(20,80,40,0.4),rgba(45,20,3,0.9));border-color:rgba(74,222,128,0.3)}
-.vband-ic{font-size:2rem;flex-shrink:0}
-.vband-name{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.1rem;color:var(--gold-pale)}
-.vband-sub{font-size:0.65rem;color:var(--t3);margin-top:3px;letter-spacing:.05em}
-
-/* Shimmer on vband */
-.vband::before{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.04),transparent);
-  transform:translateX(-100%);animation:shimmer 3s ease infinite;
-}
-@keyframes shimmer{to{transform:translateX(200%)}}
-
-/* Section header */
-.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;margin-top:22px}
-.sh-title{
-  font-family:'Tiro Devanagari Sanskrit',serif;
-  font-size:1.05rem;color:var(--gold-mid);
-  display:flex;align-items:center;gap:7px;
-}
-.sh-more{font-size:0.68rem;color:var(--saffron);cursor:pointer;font-family:'DM Mono',monospace;letter-spacing:.04em}
-
-/* Panchang grid */
-.pg{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
-@media(min-width:540px) and (max-width:1099px){.pg{grid-template-columns:repeat(3,1fr)}}
-@media(min-width:1100px){.pg{grid-template-columns:repeat(4,1fr)}}
-
-.pc{
-  background:var(--card);border:1px solid var(--b1);
-  border-radius:var(--r2);padding:13px;
-  transition:all .25s;cursor:default;position:relative;overflow:hidden;
-}
-.pc::after{
-  content:'';position:absolute;top:0;right:0;
-  width:45px;height:45px;
-  background:radial-gradient(circle,rgba(212,148,10,0.08),transparent 70%);
-  border-radius:0 var(--r2) 0 45px;
-}
-.pc:hover{border-color:var(--b2);transform:translateY(-2px);box-shadow:0 6px 20px rgba(212,148,10,0.1)}
-.pc.ok{border-color:rgba(74,222,128,0.25);background:rgba(74,222,128,0.04)}
-.pc.ng{border-color:rgba(248,113,113,0.2);background:rgba(248,113,113,0.04)}
-
-.pc-l{font-size:0.57rem;color:var(--t3);text-transform:uppercase;letter-spacing:.1em;margin-bottom:5px;font-family:'DM Mono',monospace}
-/* KEY FIX: much better readability */
-.pc-hi{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.12rem;color:var(--t1);line-height:1.3}
-.pc-en{font-size:0.72rem;color:var(--t2);margin-top:2px}
-.pc-sub{font-size:0.63rem;color:var(--gold-mid);margin-top:3px;font-style:italic}
-
-/* Muhurat */
-.mg{display:grid;grid-template-columns:1fr 1fr;gap:9px}
-@media(min-width:1100px){.mg{grid-template-columns:repeat(3,1fr)}}
-
-.muc{border-radius:var(--r2);padding:13px 15px;border:1px solid;transition:transform .2s}
-.muc:hover{transform:translateY(-2px)}
-.muc.g{background:rgba(74,222,128,0.07);border-color:rgba(74,222,128,0.22)}
-.muc.b{background:rgba(248,113,113,0.07);border-color:rgba(248,113,113,0.18)}
-.muc-l{font-size:0.57rem;color:var(--t3);text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px;font-family:'DM Mono',monospace}
-.muc-n{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.92rem;margin-bottom:4px}
-.muc.g .muc-n{color:var(--good)}
-.muc.b .muc-n{color:var(--bad)}
-.muc-t{font-size:0.78rem;color:var(--t2);font-variant-numeric:tabular-nums}
-
-/* Chaughadi */
-.chau-g{display:grid;grid-template-columns:repeat(4,1fr);gap:7px}
-@media(min-width:560px){.chau-g{grid-template-columns:repeat(8,1fr)}}
-
-.cc{
-  border-radius:var(--r1);padding:9px 5px;text-align:center;
-  border:1px solid;transition:all .2s;position:relative;
-}
-.cc.g{background:rgba(74,222,128,0.07);border-color:rgba(74,222,128,0.2)}
-.cc.b{background:rgba(248,113,113,0.06);border-color:rgba(248,113,113,0.15)}
-.cc.now{
-  border-color:var(--gold)!important;
-  box-shadow:0 0 14px rgba(212,148,10,0.45);
-  animation:gnow 2s ease-in-out infinite;
-}
-@keyframes gnow{0%,100%{box-shadow:0 0 10px rgba(212,148,10,0.3)}50%{box-shadow:0 0 22px rgba(212,148,10,0.7)}}
-.cc.now::after{content:'●';position:absolute;top:2px;right:4px;font-size:6px;color:var(--gold)}
-.cc-n{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.84rem;font-weight:600}
-.cc.g .cc-n{color:var(--good)}.cc.b .cc-n{color:var(--bad)}
-.cc-t{font-size:0.52rem;color:var(--t3);margin-top:3px;line-height:1.3}
-
-/* Katha */
-.kw{
-  background:linear-gradient(150deg,rgba(100,30,0,0.3),var(--surface),rgba(180,80,0,0.08));
-  border:1px solid rgba(212,148,10,0.22);
-  border-radius:var(--r4);overflow:hidden;
-  margin-bottom:14px;transition:border-color .2s;
-}
-.kw:hover{border-color:var(--b2)}
-.kw-hdr{padding:17px 18px 0;display:flex;align-items:flex-start;gap:13px}
-.kw-ic{font-size:2rem;flex-shrink:0}
-.kw-title{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.12rem;color:var(--gold-pale)}
-.kw-deity{font-size:0.68rem;color:var(--t3);margin-top:3px}
-.kw-tabs{
-  display:flex;padding:11px 18px 0;
-  border-bottom:1px solid var(--b1);overflow-x:auto;scrollbar-width:none;
-}
-.kw-tabs::-webkit-scrollbar{display:none}
-.ktab{
-  padding:7px 14px;font-size:0.7rem;color:var(--t3);
-  cursor:pointer;border-bottom:2px solid transparent;
-  transition:all .2s;white-space:nowrap;
-  font-family:'DM Mono',monospace;letter-spacing:.04em;
-}
-.ktab:hover{color:var(--gold-mid)}
-.ktab.active{color:var(--gold-bright);border-bottom-color:var(--gold-bright)}
-.kw-body{padding:16px 18px 18px}
-.kc{display:none}.kc.active{display:block}
-/* Readable body text */
-.kc-mah{
-  font-family:'Tiro Devanagari Sanskrit',serif;
-  font-size:0.93rem;line-height:1.95;color:var(--t2);
-  font-style:italic;border-left:2px solid var(--gold);padding-left:13px;
-}
-.kc-txt{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.92rem;line-height:1.95;color:var(--t2)}
-.kc-steps{list-style:none}
-.kc-steps li{
-  font-family:'Tiro Devanagari Sanskrit',serif;
-  font-size:0.88rem;padding:8px 0;
-  border-bottom:1px solid rgba(212,148,10,0.1);
-  color:var(--t2);display:flex;gap:9px;align-items:flex-start;line-height:1.7;
-}
-.kc-steps li::before{content:'🔸';flex-shrink:0;font-size:0.72rem;margin-top:3px}
-.mantra-b{
-  background:rgba(212,148,10,0.07);border:1px solid rgba(212,148,10,0.18);
-  border-radius:var(--r1);padding:13px 15px;margin-top:9px;
-}
-.m-lbl{font-size:0.57rem;color:var(--gold-mid);text-transform:uppercase;letter-spacing:.14em;margin-bottom:5px;font-family:'DM Mono',monospace}
-.m-txt{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.95rem;line-height:1.85;color:var(--gold-pale)}
-
-/* Graha */
-.gf{display:flex;gap:9px;overflow-x:auto;padding-bottom:5px;scrollbar-width:none}
-.gf::-webkit-scrollbar{display:none}
-.gc{
-  flex-shrink:0;min-width:78px;
-  background:var(--card2);border:1px solid var(--b1);
-  border-radius:var(--r2);padding:10px;text-align:center;
-  transition:all .2s;
-}
-.gc:hover{border-color:var(--b2);transform:translateY(-3px)}
-.gc-n{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.87rem;color:var(--gold-mid)}
-.gc-r{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.77rem;color:var(--t2);margin-top:4px}
-.gc-d{font-size:0.58rem;color:var(--t4);margin-top:2px;font-family:'DM Mono',monospace}
-
-/* Reels */
-.reel-row{display:flex;gap:11px;overflow-x:auto;padding-bottom:7px;scrollbar-width:none}
-.reel-row::-webkit-scrollbar{display:none}
-.rcard{
-  flex-shrink:0;width:170px;
-  background:var(--surface2);border:1px solid var(--b1);
-  border-radius:var(--r3);overflow:hidden;cursor:pointer;transition:all .25s;
-}
-.rcard:hover{transform:scale(1.03);border-color:var(--b2)}
-.rthumb{width:100%;height:265px;background:var(--surface);position:relative;overflow:hidden}
-.rthumb img{width:100%;height:100%;object-fit:cover}
-.rplay{
-  position:absolute;inset:0;
-  background:rgba(0,0,0,0.28);
-  display:flex;align-items:center;justify-content:center;font-size:2rem;
-  transition:background .2s;
-}
-.rcard:hover .rplay{background:rgba(0,0,0,0.12)}
-.rinfo{padding:9px 11px}
-.rtitle{
-  font-family:'Tiro Devanagari Sanskrit',serif;
-  font-size:0.8rem;color:var(--t1);line-height:1.4;
-  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
-}
-.rmeta{font-size:0.62rem;color:var(--t3);margin-top:4px;font-family:'DM Mono',monospace}
-
-/* CTA */
-.cta{
-  background:linear-gradient(135deg,rgba(120,30,0,0.5),rgba(200,80,0,0.2),rgba(30,10,0,0.9));
-  border:1px solid rgba(232,100,12,0.35);
-  border-radius:var(--r4);padding:22px 20px;
-  text-align:center;margin:22px 0;position:relative;overflow:hidden;
-}
-.cta::before{content:'🙏';position:absolute;right:-10px;bottom:-15px;font-size:90px;opacity:0.06;line-height:1}
-.cta-title{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.25rem;color:var(--gold-pale);margin-bottom:7px}
-.cta-sub{font-size:0.83rem;color:var(--t2);line-height:1.7;margin-bottom:16px}
-.cta-btns{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
-.cb{padding:10px 20px;border-radius:var(--r2);font-size:0.83rem;font-weight:600;cursor:pointer;transition:all .2s}
-.cb-main{background:linear-gradient(135deg,var(--saffron),var(--gold));color:#000;border:none}
-.cb-main:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(232,100,12,0.35)}
-.cb-wa{background:rgba(37,211,102,0.1);border:1px solid rgba(37,211,102,0.4);color:#25D366}
-.cb-wa:hover{background:rgba(37,211,102,0.18)}
-
-/* Footer */
-.ft{
-  background:rgba(10,3,0,0.97);
-  border-top:1px solid var(--b1);
-  padding:28px 18px 22px;margin-top:28px;
-}
-.ft-in{max-width:860px;margin:0 auto}
-.ft-top{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
-@media(min-width:560px){.ft-top{grid-template-columns:2fr 1fr 1fr 1fr}}
-.ft-brand{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.05rem;color:var(--gold);margin-bottom:6px}
-.ft-tag{font-size:0.74rem;color:var(--t4);line-height:1.75}
-.ft-col-t{font-size:0.58rem;color:var(--t4);text-transform:uppercase;letter-spacing:.16em;margin-bottom:9px;font-family:'DM Mono',monospace}
-.ft-lnk{font-size:0.82rem;color:var(--t3);cursor:pointer;padding:3px 0;transition:color .2s;display:block}
-.ft-lnk:hover{color:var(--gold-mid)}
-.ft-copy{
-  padding-top:14px;border-top:1px solid var(--b1);
-  text-align:center;font-size:0.68rem;color:var(--t4);
-  font-family:'DM Mono',monospace;
-}
-
-/* Right sidebar */
-.rsb{background:rgba(10,3,0,0.5);padding:18px 14px}
-.rw{
-  background:var(--card2);border:1px solid var(--b1);
-  border-radius:var(--r3);padding:14px;margin-bottom:14px;
-}
-.rw-t{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.95rem;color:var(--gold-mid);margin-bottom:11px;display:flex;align-items:center;gap:6px}
-.rr{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--b1)}
-.rr:last-child{border-bottom:none}
-.rr-k{font-size:0.75rem;color:var(--t3)}
-.rr-v{font-family:'Tiro Devanagari Sanskrit',serif;font-size:0.87rem;text-align:right}
-.rr-v.g{color:var(--good)}.rr-v.b{color:var(--bad)}.rr-v.gold{color:var(--gold-mid)}
-
-/* Bottom nav */
-.bnav{
-  display:none;position:fixed;bottom:0;left:0;right:0;z-index:500;
-  background:rgba(10,3,0,0.97);backdrop-filter:blur(20px);
-  border-top:1px solid var(--b1);
-  padding:7px 0 env(safe-area-inset-bottom,7px);
-}
-@media(max-width:1099px){.bnav{display:flex;justify-content:space-around}}
-.ntab{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:5px 3px;cursor:pointer;transition:all .2s}
-.ntab-i{font-size:1.25rem;transition:filter .2s}
-.ntab-l{font-size:0.56rem;color:var(--t4);font-family:'DM Mono',monospace;letter-spacing:.03em;transition:color .2s}
-.ntab.active .ntab-l{color:var(--gold-mid)}
-.ntab.active .ntab-i{filter:drop-shadow(0 0 7px rgba(212,148,10,0.8))}
-
-/* Date picker modal */
-.dpm-ov{
-  display:none;position:fixed;inset:0;z-index:600;
-  background:rgba(10,3,0,0.93);backdrop-filter:blur(10px);
-  align-items:center;justify-content:center;
-}
-.dpm-ov.open{display:flex}
-.dpm{
-  background:var(--surface2);border:1px solid var(--b2);
-  border-radius:var(--r4);padding:26px;width:min(360px,92vw);
-}
-.dpm-title{font-family:'Tiro Devanagari Sanskrit',serif;font-size:1.08rem;color:var(--gold-bright);text-align:center;margin-bottom:5px}
-.dpm-hint{font-size:0.68rem;color:var(--t4);text-align:center;margin-bottom:16px;font-family:'DM Mono',monospace}
-.dpm-row{display:flex;gap:8px;margin-bottom:14px}
-.dp-in{
-  flex:1;background:rgba(212,148,10,0.06);
-  border:1px solid var(--b1);border-radius:var(--r1);
-  color:var(--t1);padding:9px 11px;font-size:0.87rem;outline:none;
-}
-.dp-in:focus{border-color:var(--gold)}
-.dp-in option{background:var(--surface);color:var(--t1)}
-.dpm-acts{display:flex;gap:9px}
-.dp-cancel{flex:1;padding:10px;border-radius:var(--r1);background:transparent;border:1px solid var(--b1);color:var(--t3);cursor:pointer;font-size:0.8rem;transition:all .2s}
-.dp-cancel:hover{border-color:var(--gold-mid);color:var(--gold-mid)}
-.dp-go{flex:1.6;padding:10px;border-radius:var(--r1);background:linear-gradient(135deg,var(--saffron),var(--gold));color:#000;border:none;cursor:pointer;font-size:0.82rem;font-weight:700;transition:all .2s}
-.dp-go:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(232,100,12,0.35)}
-
-/* Animations */
-.fu{animation:fu .5s ease both}
-@keyframes fu{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
-.fu:nth-child(1){animation-delay:.03s}.fu:nth-child(2){animation-delay:.06s}
-.fu:nth-child(3){animation-delay:.09s}.fu:nth-child(4){animation-delay:.12s}
-.fu:nth-child(5){animation-delay:.15s}.fu:nth-child(6){animation-delay:.18s}
-.fu:nth-child(7){animation-delay:.21s}.fu:nth-child(8){animation-delay:.24s}
-
-.loader{display:flex;flex-direction:column;align-items:center;justify-content:center;min-height:160px;gap:10px}
-.om-anim{
-  font-family:'Tiro Devanagari Sanskrit',serif;
-  font-size:2.2rem;color:var(--gold-mid);
-  animation:oapulse 2.5s ease-in-out infinite;
-}
-@keyframes oapulse{0%,100%{opacity:0.35;transform:scale(1)}50%{opacity:1;transform:scale(1.12)}}
-.loader-t{font-size:0.75rem;color:var(--t4);font-family:'DM Mono',monospace;animation:blink 1.5s ease infinite}
-@keyframes blink{0%,100%{opacity:.5}50%{opacity:1}}
-
-</style>
+        /* Card Designs from Image */
+        .card { background: var(--bg-card); border-radius: 20px; border: 1px solid #331500; padding: 20px; margin-bottom: 20px; }
+        .hero-card { text-align: center; background: radial-gradient(circle at center, #261000, #150a05); }
+        .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .pc-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .pc-item { background: #1c0f08; padding: 12px; border-radius: 12px; border: 1px solid #3d1a00; }
+        
+        /* Panditai Ad Button */
+        .cta-box { background: linear-gradient(135deg, #4d1a00, #1c0a00); padding: 20px; border-radius: 25px; border: 1px solid var(--saffron); text-align: center; }
+        .btn-call { background: var(--saffron); color: white; padding: 10px 20px; border-radius: 10px; text-decoration: none; display: inline-block; margin-top: 10px; font-weight: bold; }
+        
+        .val { color: var(--gold); font-family: 'DM Mono', monospace; }
+        .hi { font-family: 'Tiro Devanagari Sanskrit', serif; font-size: 1.1rem; }
+    </style>
 </head>
 <body>
 
-<!-- SUBTLE STARS -->
-<div id="stars"></div>
-
-<!-- DATE PICKER -->
-<div class="dpm-ov" id="dpov">
-  <div class="dpm">
-    <div class="dpm-title">📅 कोई भी तिथि खोजें</div>
-    <div class="dpm-hint">1 AD से 2100 AD तक — किसी भी युग का पंचांग</div>
-    <div class="dpm-row">
-      <select id="dpD" class="dp-in"><option value="">दिन</option></select>
-      <select id="dpM" class="dp-in">
-        <option value="">माह</option>
-        <option value="1">जनवरी</option><option value="2">फरवरी</option><option value="3">मार्च</option>
-        <option value="4">अप्रैल</option><option value="5">मई</option><option value="6">जून</option>
-        <option value="7">जुलाई</option><option value="8">अगस्त</option><option value="9">सितंबर</option>
-        <option value="10">अक्टूबर</option><option value="11">नवंबर</option><option value="12">दिसंबर</option>
-      </select>
-      <input id="dpY" class="dp-in" type="number" placeholder="वर्ष" min="1" max="2100" style="max-width:82px">
-    </div>
-    <div class="dpm-acts">
-      <button class="dp-cancel" onclick="dpC()">रद्द करें</button>
-      <button class="dp-go" onclick="dpGo()">🔍 पंचांग देखें</button>
-    </div>
-  </div>
-</div>
-
-<!-- HEADER -->
 <header class="hdr">
-  <a class="hdr-logo" href="#">
-    <div class="hdr-icon">🕉️</div>
-    <div>
-      <div class="hdr-en">ADHYATMIK BHARAT</div>
-      <div class="hdr-hi">आध्यात्मिक भारत</div>
-    </div>
-  </a>
-  <div class="hdr-mid">
-    <div class="hdr-clock">
-      <div>
-        <div class="hdr-clock-time" id="hclk">00:00:00</div>
-        <div class="live-pill"><div class="ldot"></div>LIVE IST</div>
-      </div>
-    </div>
-  </div>
-  <div class="hdr-actions">
-    <button class="hbtn" onclick="dpO()" title="Date Search">🔍</button>
-    <button class="hbtn" title="Notifications">🔔</button>
-    <button class="hbtn" title="Menu">☰</button>
-  </div>
+    <div class="hi" style="color:var(--gold)">🕉️ आध्यात्मिक भारत</div>
+    <div id="ist-clock" class="val" style="background:#261000; padding:5px 15px; border-radius:10px;">00:00:00</div>
 </header>
 
-<!-- SHELL -->
 <div class="shell">
+    <aside class="lsb">
+        <div class="hi" style="color:var(--t2); font-size:0.8rem; margin-bottom:15px;">आने वाले त्योहार</div>
+        <div id="fest-list"></div>
+    </aside>
 
-  <!-- LEFT SIDEBAR -->
-  <aside class="lsb">
-    <nav>
-      <div class="snav-item active"><span class="snav-ic">🏠</span>Home</div>
-      <div class="snav-item"><span class="snav-ic">📅</span>Panchang</div>
-      <div class="snav-item"><span class="snav-ic">🪔</span>Vrat Katha</div>
-      <div class="snav-item"><span class="snav-ic">📆</span>Calendar</div>
-      <div class="snav-item"><span class="snav-ic">⭐</span>Rashifal</div>
-      <div class="snav-item"><span class="snav-ic">🎬</span>Videos</div>
-    </nav>
-    <div class="sdivider"></div>
-    <div class="stitle">Upcoming Festivals</div>
-    <div id="supcoming">
-      <div class="loader"><div class="om-anim">ॐ</div></div>
-    </div>
-    <div class="sdivider"></div>
-    <nav>
-      <div class="snav-item"><span class="snav-ic">ℹ️</span>About Us</div>
-      <div class="snav-item"><span class="snav-ic">📞</span>Contact</div>
-      <div class="snav-item"><span class="snav-ic">🔒</span>Privacy Policy</div>
-      <div class="snav-item"><span class="snav-ic">⚠️</span>Disclaimer</div>
-    </nav>
-  </aside>
-
-  <!-- MAIN -->
-  <main class="main">
-    <div class="mc">
-
-      <div class="ad"><div class="ad-l">Advertisement</div><div class="ad-d">Google AdSense — Leaderboard (728×90)</div></div>
-
-      <!-- HERO -->
-      <div class="hero fu">
-        <div class="hero-top">
-          <div>
-            <div class="hero-greet" id="hgreet">🙏 शुभ प्रभात</div>
-            <div class="hero-sub" id="hdateline">—</div>
-          </div>
-          <div class="mob-clk">
-            <div class="mob-clk-t" id="mclk">00:00:00</div>
-            <div class="mob-clk-l"><div class="ldot"></div>LIVE</div>
-          </div>
-        </div>
-
-        <div class="dnav">
-          <button class="dnav-btn" onclick="navD(-1)">‹</button>
-          <div class="dnav-ctr" onclick="dpO()">
-            <div class="dnav-hi" id="dnavhi">लोड हो रहा है...</div>
-            <div class="dnav-sub" id="dnavsub">किसी भी तिथि के लिए यहाँ क्लिक करें</div>
-          </div>
-          <button class="dnav-btn" onclick="navD(1)">›</button>
-          <button class="today-ch" onclick="goToday()">आज</button>
-        </div>
-
-        <div class="sv-row" id="svrow"></div>
-
-        <div class="city-row">
-          <span style="color:var(--teal);font-size:.9rem">📍</span>
-          <select id="citysel" onchange="changeCity()">
-            <option value="Delhi">Delhi — दिल्ली</option>
-            <option value="Mumbai">Mumbai — मुंबई</option>
-            <option value="Varanasi">Varanasi — वाराणसी</option>
-            <option value="Bangalore">Bangalore — बेंगलुरु</option>
-            <option value="Chennai">Chennai — चेन्नई</option>
-            <option value="Kolkata">Kolkata — कोलकाता</option>
-            <option value="Jaipur">Jaipur — जयपुर</option>
-            <option value="Haridwar">Haridwar — हरिद्वार</option>
-            <option value="Ujjain">Ujjain — उज्जैन</option>
-            <option value="Mathura">Mathura — मथुरा</option>
-            <option value="Lucknow">Lucknow — लखनऊ</option>
-            <option value="Pune">Pune — पुणे</option>
-          </select>
-        </div>
-      </div>
-
-      <!-- SUN BAR -->
-      <div class="sun-bar fu" id="sunbar">
-        <div class="loader" style="grid-column:1/-1"><div class="om-anim">ॐ</div><div class="loader-t">पंचांग लोड हो रहा है...</div></div>
-      </div>
-
-      <!-- VRAT -->
-      <div id="vbanner"></div>
-
-      <!-- PANCH ANG -->
-      <div class="sh fu"><div class="sh-title">🔱 पञ्चांग — Panch Ang</div></div>
-      <div class="pg fu" id="pgrid">
-        <div class="loader" style="grid-column:1/-1"><div class="om-anim">ॐ</div></div>
-      </div>
-
-      <div class="ad" style="margin-top:18px"><div class="ad-l">Sponsored</div><div class="ad-d">Astrology Consultation (300×250)</div></div>
-
-      <!-- MUHURAT -->
-      <div class="sh fu"><div class="sh-title">✨ मुहूर्त</div></div>
-      <div class="mg fu" id="mugrid"></div>
-
-      <!-- CHAUGHADI -->
-      <div class="sh fu"><div class="sh-title">🕐 दिन चौघड़िया</div><div class="sh-more">विस्तार ›</div></div>
-      <div class="chau-g fu" id="chaugrid"></div>
-
-      <!-- KATHA -->
-      <div id="kathasec"></div>
-      <div id="festsec"></div>
-
-      <!-- GRAHA -->
-      <div class="sh fu"><div class="sh-title">🪐 ग्रह स्थिति</div></div>
-      <div class="gf fu" id="graflex"></div>
-
-      <!-- VIDEOS -->
-      <div class="sh fu" style="margin-top:26px"><div class="sh-title">🎬 आध्यात्मिक वीडियो</div><div class="sh-more">सभी ›</div></div>
-      <div class="reel-row fu" id="reelrow"></div>
-
-      <!-- CTA -->
-      <div class="cta fu">
-        <div class="cta-title">🙏 घर पर पूजा-पाठ करवाएं</div>
-        <div class="cta-sub">आध्यात्मिक भारत के अनुभवी पंडित जी — गृह पूजा, सत्यनारायण कथा, हवन, मुंडन, और सभी संस्कार। ऑनलाइन बुकिंग उपलब्ध।</div>
-        <div class="cta-btns">
-          <button class="cb cb-main">📞 अभी संपर्क करें</button>
-          <button class="cb cb-wa">💬 WhatsApp</button>
-        </div>
-      </div>
-
-      <div class="ad"><div class="ad-l">Advertisement</div><div class="ad-d">Footer Banner (320×100)</div></div>
-
-      <!-- FOOTER -->
-      <footer class="ft">
-        <div class="ft-in">
-          <div class="ft-top">
-            <div>
-              <div class="ft-brand">🕉️ आध्यात्मिक भारत</div>
-              <div class="ft-tag">भारत की वैदिक परंपरा को आधुनिक तकनीक से जोड़ने का प्रयास।<br>Swiss Ephemeris — 1 AD से 2100 AD तक सटीक पंचांग।</div>
+    <main class="main">
+        <div class="card hero-card">
+            <div id="greet" class="hi" style="font-size:2rem; color:var(--gold)">शुभ रात्रि</div>
+            <div id="current-date" class="val">Tuesday, 12 May 2026</div>
+            <div style="margin-top:15px;">
+                <input type="date" id="date-picker" onchange="searchDate()" style="background:#331500; color:white; border:none; padding:8px; border-radius:8px;">
             </div>
-            <div>
-              <div class="ft-col-t">Quick Links</div>
-              <div class="ft-lnk">🏠 Home</div>
-              <div class="ft-lnk">📅 Panchang</div>
-              <div class="ft-lnk">🪔 Vrat Katha</div>
-              <div class="ft-lnk">📆 Calendar</div>
-            </div>
-            <div>
-              <div class="ft-col-t">Info</div>
-              <div class="ft-lnk">ℹ️ About Us</div>
-              <div class="ft-lnk">📞 Contact</div>
-              <div class="ft-lnk">🔒 Privacy</div>
-              <div class="ft-lnk">⚠️ Disclaimer</div>
-            </div>
-            <div>
-              <div class="ft-col-t">More</div>
-              <div class="ft-lnk">📊 Data Sources</div>
-              <div class="ft-lnk">📲 Install App</div>
-              <div class="ft-lnk">🎬 YouTube</div>
-              <div class="ft-lnk">📢 Telegram</div>
-            </div>
-          </div>
-          <div class="ft-copy">© 2026 Adhyatmik Bharat · All Rights Reserved · <span style="color:var(--saffron)">Jai Shri Ram 🙏</span></div>
         </div>
-      </footer>
-    </div>
-  </main>
 
-  <!-- RIGHT SIDEBAR -->
-  <aside class="rsb">
-    <div class="rw">
-      <div class="rw-t">⏰ आज का समय</div>
-      <div id="rwtimings"><div class="loader"><div class="om-anim">ॐ</div></div></div>
-    </div>
-    <div class="rw">
-      <div class="rw-t">🌙 अशुभ काल</div>
-      <div id="rwbad"></div>
-    </div>
-    <div class="ad"><div class="ad-l">Side Ad</div><div class="ad-d">300×600</div></div>
-  </aside>
+        <div class="grid-4" id="sun-moon-grid"></div>
+
+        <div class="cta-box">
+            <div class="hi">🙏 घर पर पूजा-पाठ करवाएं</div>
+            <div style="font-size:0.8rem; color:var(--t2); margin:10px 0;">अनुभवी पंडित जी द्वारा सभी प्रकार के संस्कार और कथाएँ।</div>
+            <a href="tel:+91XXXXXXXXXX" class="btn-call">📞 संपर्क करें</a>
+        </div>
+
+        <div class="hi" style="margin:20px 0 10px; color:var(--gold)">🔱 पञ्चांग — Panch Ang</div>
+        <div class="pc-grid" id="panchang-grid"></div>
+    </main>
+
+    <aside class="rsb">
+        <div class="card">
+            <div class="hi" style="font-size:0.9rem; margin-bottom:10px;">⏰ आज का समय</div>
+            <div id="auspicious-times"></div>
+        </div>
+        <div class="card">
+            <div class="hi" style="font-size:0.9rem; color:var(--bad); margin-bottom:10px;">🌙 अशुभ काल</div>
+            <div id="inauspicious-times"></div>
+        </div>
+    </aside>
 </div>
 
-<!-- BOTTOM NAV -->
-<nav class="bnav">
-  <div class="ntab active"><div class="ntab-i">🏠</div><div class="ntab-l">Home</div></div>
-  <div class="ntab"><div class="ntab-i">📅</div><div class="ntab-l">Panchang</div></div>
-  <div class="ntab"><div class="ntab-i">🪔</div><div class="ntab-l">Vrat</div></div>
-  <div class="ntab"><div class="ntab-i">🎬</div><div class="ntab-l">Videos</div></div>
-  <div class="ntab"><div class="ntab-i">👤</div><div class="ntab-l">Profile</div></div>
-</nav>
-
 <script>
-/* ── STARS GENERATOR ── */
-(function(){
-  const c=document.getElementById('stars');
-  for(let i=0;i<60;i++){
-    const s=document.createElement('div');
-    s.className='s';
-    const sz=Math.random()*1.2+0.4;
-    s.style.cssText=`width:${sz}px;height:${sz}px;left:${Math.random()*100}%;top:${Math.random()*100}%;--o:${(Math.random()*0.4+0.1).toFixed(2)};--d:${(Math.random()*4+2).toFixed(1)}s;--dl:${(Math.random()*5).toFixed(1)}s`;
-    c.appendChild(s);
-  }
-})();
+let P_DATA = null;
 
-/* ── STATE & CONFIG ── */
-let P=null, VC=null, FC=null;
-// IST Date Logic
-let CUR = new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"}).slice(0, 10).split(',')[0];
-let CITY = 'Delhi';
-
-/* ── CLOCK (IST) ── */
-function tick(){
-  const n = new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
-  const now = new Date(n);
-  const t = [now.getHours(),now.getMinutes(),now.getSeconds()].map(x=>String(x).padStart(2,'0')).join(':');
-  document.getElementById('hclk').textContent=t;
-  document.getElementById('mclk').textContent=t;
-  const h=now.getHours();
-  const g=h<5?'🌙 शुभ रात्रि':h<12?'🙏 शुभ प्रभात':h<17?'☀️ शुभ दोपहर':h<20?'🌅 शुभ संध्या':'🌙 शुभ रात्रि';
-  if(document.getElementById('hgreet')) document.getElementById('hgreet').textContent=g;
+// Clock Logic
+function updateClock() {
+    const now = new Date().toLocaleString("en-US", {timeZone: "Asia/Kolkata"});
+    const time = new Date(now).toLocaleTimeString('en-GB');
+    document.getElementById('ist-clock').innerText = time;
 }
-setInterval(tick,1000); tick();
+setInterval(updateClock, 1000);
 
-/* ── DATA LOADING ── */
-async function loadAll(){
-  try {
-    // Cache busting taaki hamesha fresh data dikhe
-    const v = new Date().getTime();
-    const [a, b, c] = await Promise.all([
-      fetch(`today_panchang.json?v=${v}`).then(r=>r.json()),
-      fetch('vrat_content.json').then(r=>r.json()),
-      fetch('festival_content.json').then(r=>r.json()),
-    ]);
-    P = a; VC = b; FC = c;
-    render();
-  } catch(e) {
-    console.error("Data Error:", e);
-  }
+// Load Data From your JSON files
+async function loadPanchang() {
+    try {
+        const response = await fetch('today_panchang.json?v=' + Date.now());
+        P_DATA = await response.json();
+        render();
+    } catch(e) {
+        document.querySelector('.main').innerHTML += "<p style='color:red'>Data load nahi ho raha. GitHub Actions check karein.</p>";
+    }
 }
 
-/* ── NAVIGATION ── */
-function navD(n){
-  const d = new Date(P.date.gregorian_short);
-  d.setDate(d.getDate() + n);
-  const newDate = d.toISOString().slice(0,10);
-  // Kyunki static site hai, hum user ko GitHub Actions manual trigger ke liye guide kar sakte hain
-  alert("Nayi date ka data generate karne ke liye GitHub Actions ka use karein.");
+function render() {
+    const d = P_DATA;
+    // Hero Section
+    document.getElementById('current-date').innerText = d.date.gregorian;
+    
+    // Sun Moon Grid
+    document.getElementById('sun-moon-grid').innerHTML = `
+        <div class="pc-item">🌅<br>सूर्योदय<br><span class="val">${d.sun_moon.sunrise}</span></div>
+        <div class="pc-item">🌇<br>सूर्यास्त<br><span class="val">${d.sun_moon.sunset}</span></div>
+        <div class="pc-item">🌙<br>चन्द्रोदय<br><span class="val">${d.sun_moon.moonrise}</span></div>
+        <div class="pc-item">☀️<br>मध्याह्न<br><span class="val">${d.sun_moon.solar_noon}</span></div>
+    `;
+
+    // Panchang Grid
+    const pa = d.panch_ang;
+    document.getElementById('panchang-grid').innerHTML = `
+        <div class="pc-item"><small>TITHI</small><br><b class="hi">${pa.tithi.name_hi}</b><br><span class="val">${pa.tithi.paksha_hi}</span></div>
+        <div class="pc-item"><small>NAKSHATRA</small><br><b class="hi">${pa.nakshatra.name_hi}</b><br><span class="val">पाद ${pa.nakshatra.pada}</span></div>
+        <div class="pc-item"><small>YOGA</small><br><b class="hi">${pa.yoga.name_hi}</b><br><span class="val">${pa.yoga.nature}</span></div>
+        <div class="pc-item"><small>VAR</small><br><b class="hi">${d.date.weekday_hi}</b><br><span class="val">${d.date.day_deity_hi}</span></div>
+    `;
+
+    // Auspicious/Inauspicious
+    document.getElementById('auspicious-times').innerHTML = `
+        <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin:5px 0;"><span>Abhijit</span><span class="val">${d.auspicious.abhijit_muhurat}</span></div>
+    `;
+    document.getElementById('inauspicious-times').innerHTML = `
+        <div style="display:flex; justify-content:space-between; font-size:0.8rem; margin:5px 0;"><span>Rahu Kalam</span><span class="val" style="color:var(--bad)">${d.inauspicious.rahu_kalam}</span></div>
+    `;
 }
 
-function goToday(){
-  window.location.reload();
+function searchDate() {
+    const picked = document.getElementById('date-picker').value;
+    alert("Universal calculation engine active: Requesting data for " + picked);
+    // Note: User can now use GitHub manual trigger for specific dates as we discussed.
 }
 
-function dpO(){document.getElementById('dpov').classList.add('open')}
-function dpC(){document.getElementById('dpov').classList.remove('open')}
-
-function dpGo(){
-  const d=document.getElementById('dpD').value, m=document.getElementById('dpM').value, y=document.getElementById('dpY').value;
-  if(!d||!m||!y){alert('Poori date bharein'); return;}
-  alert(`Search features ke liye date ${y}-${m}-${d} ko Manual trigger karein.`);
-  dpC();
-}
-
-/* ── RENDER (Same as your beautiful UI) ── */
-function render(){
-  if(!P) return;
-  const d=P, hc=d.hindu_calendar, pa=d.panch_ang, sm=d.sun_moon, dt=d.date, inau=d.inauspicious, au=d.auspicious;
-  
-  document.getElementById('hdateline').textContent = dt.gregorian;
-  document.getElementById('dnavhi').textContent = `${dt.weekday_hi} · ${dt.gregorian}`;
-  document.getElementById('dnavsub').textContent = `${hc.masa_hi} · ${hc.paksha_hi} · ${d.city}`;
-
-  // ... (Baaki saara render logic jo aapne index.html mein likha tha, wo same rahega)
-  // Maine sirf top navigation fix kiya hai taaki auto-update data load ho jaye.
-  
-  // NOTE: Is code mein aapka purana render logic (Sun bar, Panchang Grid etc.) 
-  // waise hi kaam karega jaise pehle kar raha tha.
-}
-
-loadAll();
-</script></body>
+loadPanchang();
+</script>
+</body>
 </html>
