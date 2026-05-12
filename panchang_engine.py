@@ -1,8 +1,7 @@
 """
-Adhyatmik Bharat - Panchang Engine v2.1 FINAL
-Fields guaranteed to match index.html
+Adhyatmik Bharat - Panchang Engine v2.1 FINAL (IST FIXED)
 """
-import swisseph as swe, json, sys
+import swisseph as swe, json, sys, pytz
 from datetime import datetime, date, timedelta
 from astral import LocationInfo
 from astral.sun import sun
@@ -111,7 +110,7 @@ FEST={
     (1,9,"Shukla"):{"name":"Ram Navami","name_hi":"राम नवमी"},
     (1,15,"Shukla"):{"name":"Hanuman Jayanti","name_hi":"हनुमान जयंती"},
     (2,3,"Shukla"):{"name":"Akshaya Tritiya","name_hi":"अक्षय तृतीया"},
-    (2,11,"Shukla"):{"name":"Mohini Ekadashi","name_hi":"मोहिनी एकादशी"},
+    (2,11,"Shukla"):{"name":"Mohini Ekadashi","name_hi":"मोहनी एकादशी"},
     (3,11,"Shukla"):{"name":"Nirjala Ekadashi","name_hi":"निर्जला एकादशी"},
     (4,11,"Shukla"):{"name":"Dev Shayani Ekadashi","name_hi":"देव शयनी एकादशी"},
     (4,15,"Shukla"):{"name":"Guru Purnima","name_hi":"गुरु पूर्णिमा"},
@@ -172,10 +171,8 @@ def calc_kar(sl,ml,second=False):
 
 def calc_masa(sl):
     i = int(sl/30)%12
-    # Amanta: South India - month starts after Amavasya
     amanta_en = MAS_EN[i]
     amanta_hi = MAS_HI[i]
-    # Purnimanta: North India - one month ahead
     purn_i = (i+1)%12
     purnimanta_en = MAS_EN[purn_i]
     purnimanta_hi = MAS_HI[purn_i]
@@ -297,9 +294,9 @@ def calculate_panchang(target_date=None,city="Delhi"):
             "samvat_name":svname(vs),
             "shaka_samvat":shk,
             "masa": mas["masa"],
-"masa_hi": mas["masa_hi"],
-"purnimanta": mas["purnimanta"],
-"purnimanta_hi": mas["purnimanta_hi"],
+            "masa_hi": mas["masa_hi"],
+            "purnimanta": mas["purnimanta"],
+            "purnimanta_hi": mas["purnimanta_hi"],
             "paksha":ti["paksha"],
             "paksha_hi":ti["paksha_hi"],
         },
@@ -330,7 +327,10 @@ def calculate_panchang(target_date=None,city="Delhi"):
     }
 
 if __name__=="__main__":
-    t=date.today(); city="Delhi"
+    IST = pytz.timezone('Asia/Kolkata')
+    india_now = datetime.now(IST)
+    t = india_now.date() 
+    city = "Delhi"
     if len(sys.argv)>=2:
         try: t=date.fromisoformat(sys.argv[1])
         except: pass
