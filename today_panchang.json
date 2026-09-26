@@ -1,13 +1,13 @@
 {
   "date": {
-    "gregorian": "26 September 2026",
-    "gregorian_short": "2026-09-26",
-    "weekday_en": "Saturday",
-    "weekday_hi": "शनिवार",
-    "day_deity": "Shani",
-    "day_deity_hi": "शनि",
-    "prev_date": "2026-09-25",
-    "next_date": "2026-09-27"
+    "gregorian": "27 September 2026",
+    "gregorian_short": "2026-09-27",
+    "weekday_en": "Sunday",
+    "weekday_hi": "रविवार",
+    "day_deity": "Surya",
+    "day_deity_hi": "सूर्य",
+    "prev_date": "2026-09-26",
+    "next_date": "2026-09-28"
   },
   "hindu_calendar": {
     "vikram_samvat": 2083,
@@ -17,128 +17,127 @@
     "masa_hi": "आश्विन",
     "purnimanta": "Kartik",
     "purnimanta_hi": "कार्तिक",
-    "paksha": "Shukla",
-    "paksha_hi": "शुक्ल"
+    "paksha": "Krishna",
+    "paksha_hi": "कृष्ण"
   },
   "panch_ang": {
     "tithi": {
-      "number": 15,
-      "name": "Purnima",
-      "name_hi": "पूर्णिमा",
-      "paksha": "Shukla",
-      "paksha_hi": "शुक्ल"
+      "number": 16,
+      "name": "Pratipada",
+      "name_hi": "प्रतिपदा",
+      "paksha": "Krishna",
+      "paksha_hi": "कृष्ण"
     },
     "nakshatra": {
-      "name": "Purva Bhadrapada",
-      "name_hi": "पूर्व भाद्रपद",
+      "name": "Uttara Bhadrapada",
+      "name_hi": "उत्तर भाद्रपद",
       "pada": 4,
-      "index": 25,
-      "lord": "Brihaspati",
-      "deity": "Aja Ekapada"
+      "index": 26,
+      "lord": "Shani",
+      "deity": "Ahirbudhnya"
     },
     "yoga": {
-      "name": "Ganda",
-      "name_hi": "गण्ड",
-      "nature": "bad"
+      "name": "Vriddhi",
+      "name_hi": "वृद्धि",
+      "nature": "good"
     },
     "karana1": {
-      "name": "Vishti",
-      "name_hi": "विष्टि",
-      "nature": "bad"
+      "name": "Balava",
+      "name_hi": "बालव",
+      "nature": "good"
     },
     "karana2": {
-      "name": "Bava",
-      "name_hi": "बव",
+      "name": "Kaulava",
+      "name_hi": "कौलव",
       "nature": "good"
     },
     "var": {
-      "name": "Saturday",
-      "name_hi": "शनिवार",
-      "deity": "Shani"
+      "name": "Sunday",
+      "name_hi": "रविवार",
+      "deity": "Surya"
     }
   },
   "sun_moon": {
-    "sunrise": "06:11 AM",
-    "sunset": "06:13 PM",
-    "sunrise_24": "06:11",
-    "sunset_24": "18:13",
+    "sunrise": "06:12 AM",
+    "sunset": "06:11 PM",
+    "sunrise_24": "06:12",
+    "sunset_24": "18:11",
     "solar_noon": "12:12 PM",
-    "moonrise": "05:54 PM",
-    "moonset": "05:36 AM",
+    "moonrise": "06:26 PM",
+    "moonset": "06:36 AM",
     "sun_rashi": "Kanya",
     "sun_rashi_hi": "कन्या",
     "moon_rashi": "Meen",
     "moon_rashi_hi": "मीन"
   },
   "auspicious": {
-    "abhijit_muhurat": "11:48 AM - 12:36 PM",
-    "amrit_kalam": "06:48 PM - 10:36 PM"
+    "abhijit_muhurat": "11:47 AM - 12:35 PM",
+    "amrit_kalam": "07:35 PM - 11:23 PM"
   },
   "inauspicious": {
-    "rahu_kalam": "09:11 AM - 10:41 AM",
-    "yama_kandam": "03:11 PM - 04:41 PM",
-    "gulika_kalam": "10:41 AM - 12:11 PM",
-    "varjyam": "06:45 AM - 08:21 AM",
+    "rahu_kalam": "04:42 PM - 06:12 PM",
+    "yama_kandam": "01:42 PM - 03:12 PM",
+    "gulika_kalam": "09:12 AM - 10:42 AM",
+    "varjyam": "06:12 AM - 07:48 AM",
     "dur_muhurtam": [
-      "09:23 AM - 10:11 AM",
-      "04:35 PM - 05:23 PM"
+      "12:36 PM - 01:24 PM"
     ]
   },
   "chaughadi": [
     {
       "slot": 1,
-      "name": "Kaal",
-      "name_hi": "काल",
-      "time": "06:11 AM - 07:41 AM",
+      "name": "Udveg",
+      "name_hi": "उद्वेग",
+      "time": "06:12 AM - 07:41 AM",
       "is_good": false
     },
     {
       "slot": 2,
-      "name": "Shubh",
-      "name_hi": "शुभ",
+      "name": "Char",
+      "name_hi": "चर",
       "time": "07:41 AM - 09:11 AM",
       "is_good": true
     },
     {
       "slot": 3,
-      "name": "Rog",
-      "name_hi": "रोग",
+      "name": "Labh",
+      "name_hi": "लाभ",
       "time": "09:11 AM - 10:41 AM",
-      "is_good": false
-    },
-    {
-      "slot": 4,
-      "name": "Udveg",
-      "name_hi": "उद्वेग",
-      "time": "10:41 AM - 12:12 PM",
-      "is_good": false
-    },
-    {
-      "slot": 5,
-      "name": "Char",
-      "name_hi": "चर",
-      "time": "12:12 PM - 01:42 PM",
       "is_good": true
     },
     {
+      "slot": 4,
+      "name": "Amrit",
+      "name_hi": "अमृत",
+      "time": "10:41 AM - 12:11 PM",
+      "is_good": true
+    },
+    {
+      "slot": 5,
+      "name": "Kaal",
+      "name_hi": "काल",
+      "time": "12:11 PM - 01:41 PM",
+      "is_good": false
+    },
+    {
       "slot": 6,
-      "name": "Labh",
-      "name_hi": "लाभ",
-      "time": "01:42 PM - 03:12 PM",
+      "name": "Shubh",
+      "name_hi": "शुभ",
+      "time": "01:41 PM - 03:11 PM",
       "is_good": true
     },
     {
       "slot": 7,
-      "name": "Amrit",
-      "name_hi": "अमृत",
-      "time": "03:12 PM - 04:42 PM",
-      "is_good": true
+      "name": "Rog",
+      "name_hi": "रोग",
+      "time": "03:11 PM - 04:41 PM",
+      "is_good": false
     },
     {
       "slot": 8,
-      "name": "Kaal",
-      "name_hi": "काल",
-      "time": "04:42 PM - 06:13 PM",
+      "name": "Udveg",
+      "name_hi": "उद्वेग",
+      "time": "04:41 PM - 06:11 PM",
       "is_good": false
     }
   ],
@@ -146,55 +145,55 @@
     {
       "planet": "Surya",
       "planet_hi": "सूर्य",
-      "longitude": 158.72,
-      "degree_in_rashi": "8.7",
+      "longitude": 159.7,
+      "degree_in_rashi": "9.7",
       "rashi": "Kanya",
       "rashi_hi": "कन्या"
     },
     {
       "planet": "Chandra",
       "planet_hi": "चन्द्र",
-      "longitude": 330.25,
-      "degree_in_rashi": "0.2",
+      "longitude": 343.74,
+      "degree_in_rashi": "13.7",
       "rashi": "Meen",
       "rashi_hi": "मीन"
     },
     {
       "planet": "Mangal",
       "planet_hi": "मंगल",
-      "longitude": 94.53,
-      "degree_in_rashi": "4.5",
+      "longitude": 95.12,
+      "degree_in_rashi": "5.1",
       "rashi": "Kark",
       "rashi_hi": "कर्क"
     },
     {
       "planet": "Budh",
       "planet_hi": "बुध",
-      "longitude": 179.61,
-      "degree_in_rashi": "29.6",
-      "rashi": "Kanya",
-      "rashi_hi": "कन्या"
+      "longitude": 181.02,
+      "degree_in_rashi": "1.0",
+      "rashi": "Tula",
+      "rashi_hi": "तुला"
     },
     {
       "planet": "Brihaspati",
       "planet_hi": "बृहस्पति",
-      "longitude": 114.45,
-      "degree_in_rashi": "24.5",
+      "longitude": 114.64,
+      "degree_in_rashi": "24.6",
       "rashi": "Kark",
       "rashi_hi": "कर्क"
     },
     {
       "planet": "Shukra",
       "planet_hi": "शुक्र",
-      "longitude": 193.28,
-      "degree_in_rashi": "13.3",
+      "longitude": 193.52,
+      "degree_in_rashi": "13.5",
       "rashi": "Tula",
       "rashi_hi": "तुला"
     },
     {
       "planet": "Shani",
       "planet_hi": "शनि",
-      "longitude": 347.73,
+      "longitude": 347.66,
       "degree_in_rashi": "17.7",
       "rashi": "Meen",
       "rashi_hi": "मीन"
@@ -202,7 +201,7 @@
     {
       "planet": "Rahu",
       "planet_hi": "राहु",
-      "longitude": 305.33,
+      "longitude": 305.27,
       "degree_in_rashi": "5.3",
       "rashi": "Kumbh",
       "rashi_hi": "कुम्भ"
@@ -210,7 +209,7 @@
     {
       "planet": "Ketu",
       "planet_hi": "केतु",
-      "longitude": 125.33,
+      "longitude": 125.27,
       "degree_in_rashi": "5.3",
       "rashi": "Simha",
       "rashi_hi": "सिंह"
@@ -218,13 +217,8 @@
   ],
   "vrats": [
     {
-      "name": "Purnima Vrat",
-      "name_hi": "पूर्णिमा व्रत",
-      "type": "major"
-    },
-    {
-      "name": "Shanivar Vrat",
-      "name_hi": "शनिवार व्रत",
+      "name": "Ravivar Vrat",
+      "name_hi": "रविवार व्रत",
       "type": "minor"
     }
   ],
